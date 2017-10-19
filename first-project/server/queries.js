@@ -52,8 +52,8 @@ function getSingleProduct(req, res, next) {
 }
 
 function createProduct(req, res, next) {
-    db.none('insert into products(name, category, model, maker, price)' +
-        'values(${name}, ${category}, ${model}, ${maker}, ${price})',
+    db.none('insert into products(model, maker_id, category_id, price)' +
+        'values(${model}, ${maker_id}, ${category_id}, ${price})',
       req.body)
       .then(function () {
         res.status(200)
@@ -68,9 +68,9 @@ function createProduct(req, res, next) {
 }
 
 function updateProduct(req, res, next) {
-  db.none('UPDATE products SET name=$1, category=$2, model=$3, maker=$4, price=$5 where id=$6',
-      [req.body.name, req.body.category, req.body.model,
-        req.body.model, req.body.price, parseInt(req.params.id)])
+  db.none('UPDATE products SET model=$1, maker_id=$2, category_id=$3, price=$4 where id=$5',
+      [req.body.model, parseInt(req.body.maker_id), parseInt(req.body.category_id),
+         req.body.price, parseInt(req.params.id)])
       .then(function () {
         res.status(200)
           .json({
