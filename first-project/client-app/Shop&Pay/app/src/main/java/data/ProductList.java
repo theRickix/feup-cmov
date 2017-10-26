@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ProductList {
 
-    @SerializedName("product")
+    @SerializedName("data")
     @Expose
     private ArrayList<Product> products = new ArrayList<Product>();
 

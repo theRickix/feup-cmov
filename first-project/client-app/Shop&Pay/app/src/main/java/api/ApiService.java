@@ -6,6 +6,6 @@ import retrofit2.http.GET;
 
 public interface ApiService {
 
-    @GET("/products/")
+    @GET("products")
     Call<ProductList> getProducts();
 }

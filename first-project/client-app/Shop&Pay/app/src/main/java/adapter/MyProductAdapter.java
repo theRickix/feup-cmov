@@ -46,7 +46,7 @@ public class MyProductAdapter extends ArrayAdapter<Product> {
         Product item = getItem(position);
 
         vh.textViewModel.setText(item.getModel());
-        vh.textViewPrice.setText(item.getPrice());
+        vh.textViewPrice.setText(item.getPrice()+" €");
 
         return vh.rootView;
     }
@@ -63,9 +63,9 @@ public class MyProductAdapter extends ArrayAdapter<Product> {
         }
 
         public static ViewHolder create(RelativeLayout rootView) {
-            TextView textViewName = (TextView) rootView.findViewById(R.id.textViewModel);
-            TextView textViewEmail = (TextView) rootView.findViewById(R.id.textViewPrice);
-            return new ViewHolder(rootView, textViewName, textViewEmail);
+            TextView textViewModel = (TextView) rootView.findViewById(R.id.textViewModel);
+            TextView textViewPrice = (TextView) rootView.findViewById(R.id.textViewPrice);
+            return new ViewHolder(rootView, textViewModel, textViewPrice);
         }
     }
 }
