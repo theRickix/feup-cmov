@@ -3,6 +3,7 @@ package cmov.feup.shoppay;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -139,6 +140,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            //passar ao home
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         }
     }
 
