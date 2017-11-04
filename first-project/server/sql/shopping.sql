@@ -12,5 +12,11 @@ CREATE TABLE products (
   price NUMERIC(10,2)
 );
 
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR,
+    password_cripted VARCHAR
+);
+
 INSERT INTO products (name, category, model, maker, price)
   VALUES ('Zenfone', 'Smartphone', 'Zenfone 3', 'Asus',259.99);

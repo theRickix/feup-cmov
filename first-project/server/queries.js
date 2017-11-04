@@ -12,11 +12,13 @@ var db = pgp(connectionString);
 // add query functions
 
 module.exports = {
-  getAllProducts: getAllProducts,
-  getSingleProduct: getSingleProduct,
-  createProduct: createProduct,
-  updateProduct: updateProduct,
-  removeProduct: removeProduct
+    getAllProducts: getAllProducts,
+    getSingleProduct: getSingleProduct,
+    createProduct: createProduct,
+    updateProduct: updateProduct,
+    removeProduct: removeProduct,
+    register:register,
+    login:login
 };
 
 
@@ -94,6 +96,37 @@ function removeProduct(req, res, next) {
             message: `Removed ${result.rowCount} product`
           });
         /* jshint ignore:end */
+      })
+      .catch(function (err) {
+        return next(err);
+      });
+}
+
+function register(req,res,next){
+    db.none('inser into users(username,password)values(${username},${password_cripted})',req.body)
+    .then(function () {
+        res.status(200)
+          .json({
+            status: 'success',
+            message: 'User registered'
+          });
+      })
+      .catch(function (err) {
+        return next(err);
+      });
+}
+/* preciso de ver quais são os requests caso o user n esteja já registado
+*/
+function login(req,res,next){
+    var username=req.params.username;
+    db.one('select password from users where username=$1',username)
+     .then(function (data) {
+        res.status(200)
+          .json({
+            status: 'success',
+            password: data,
+            message: 'Username exists'
+          });
       })
       .catch(function (err) {
         return next(err);
