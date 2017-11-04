@@ -30,7 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HomeActivity"
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation">
             <intent-filter>
@@ -40,8 +41,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:name=".HomeActivity"
+            android:parentActivityName=".LoginActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
+            ></activity>
+
     </application>
 
 </manifest>
