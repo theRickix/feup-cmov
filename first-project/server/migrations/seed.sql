@@ -11,11 +11,7 @@ VALUES
 
 
 INSERT INTO
-	products(model, maker_id, category_id, price)
+	products(model, barcode, maker_id, category_id, price)
  VALUES 
- 	('Zenfone 3', 1, 6,259.99);
-
-INSERT INTO
-	users(name,nickname,email,password)
-VALUES
-	('Ricardo Magalhães','theRickix','ricardo_magalhaes45@hotmail.com','teste');
+ 	('Zenfone 3','638586874977', 6, 1, 259.99),
+ 	('iPhone 8','190198453655', 3, 1, 869.99);

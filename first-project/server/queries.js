@@ -49,7 +49,10 @@ function getSingleProduct(req, res, next) {
           });
       })
       .catch(function (err) {
-        return next(err);
+        res.status(500)
+          .json({
+            status: 'error'
+          });
       });
 }
 
@@ -103,7 +106,7 @@ function removeProduct(req, res, next) {
 }
 
 function register(req,res,next){
-    db.none('inser into users(username,password)values(${username},${password_cripted})',req.body)
+    db.none('insert into users(username,password)values(${username},${password_cripted})',req.body)
     .then(function () {
         res.status(200)
           .json({
@@ -129,6 +132,9 @@ function login(req,res,next){
           });
       })
       .catch(function (err) {
-        return next(err);
+        res.status(500)
+          .json({
+            status: 'error'
+          });
       });
 }
