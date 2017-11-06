@@ -19,4 +19,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="name">Personal name</string>
+    <string name="fiscal_number">fiscal number</string>
+    <string name="idcard">idcard</string>
+    <string name="address">address</string>
 </resources>
