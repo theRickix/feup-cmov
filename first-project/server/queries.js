@@ -24,7 +24,10 @@ module.exports = {
 
 
 function getAllProducts(req, res, next) {
-  db.any('select * from products')
+  db.any('select products.id as id, products.model as model, products.barcode as barcode, '+
+          'makers.name as maker, categories.name as category, products.price as price FROM products '+
+          'INNER JOIN makers ON makers.id = products.maker_id '+
+          'INNER JOIN categories ON categories.id = products.category_id')
     .then(function (data) {
       res.status(200)
         .json({
@@ -40,7 +43,10 @@ function getAllProducts(req, res, next) {
 
 function getSingleProduct(req, res, next) {
   	var productID = parseInt(req.params.id);
-    db.one('select * from products where id = $1', productID)
+    db.one('select products.id as id, products.model as model, products.barcode as barcode, '+
+          'makers.name as maker, categories.name as category, products.price as price FROM products '+
+          'INNER JOIN makers ON makers.id = products.maker_id '+
+          'INNER JOIN categories ON categories.id = products.category_id where products.id = $1', productID)
       .then(function (data) {
         res.status(200)
           .json({
@@ -50,15 +56,15 @@ function getSingleProduct(req, res, next) {
           });
       })
       .catch(function (err) {
-        res.status(500)
-          .json({
-            status: 'error'
-          });
+        return next(err);
       });
 }
 
 function getSingleProductByBarcode(req, res, next) {
-    db.one('select * from products where barcode = $1', req.params.barcode)
+    db.one('select products.id as id, products.model as model, products.barcode as barcode, '+
+          'makers.name as maker, categories.name as category, products.price as price FROM products '+
+          'INNER JOIN makers ON makers.id = products.maker_id '+
+          'INNER JOIN categories ON categories.id = products.category_id where products.barcode = $1',  req.params.barcode)
       .then(function (data) {
         res.status(200)
           .json({

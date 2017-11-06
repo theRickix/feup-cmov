@@ -13,11 +13,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import adapter.MyProductAdapter;
@@ -31,6 +33,7 @@ import retrofit2.Response;
 import utils.AppStatus;
 
 import static android.R.drawable.ic_menu_delete;
+import static java.lang.System.in;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -39,18 +42,22 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Product> productList;
     private MyProductAdapter adapter;
+    private Activity act;
+    private TextView totalPriceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        act = this;
         /**
          * Array List for Binding Data from JSON to this List
          */
         productList = new ArrayList<>();
         parentView = findViewById(R.id.parentLayout);
 
+        totalPriceView = (TextView) findViewById(R.id.totalPrice);
+        totalPriceView.setText("Total price: 0.00 €");
         /**
          * Getting List
          */
@@ -100,7 +107,8 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("MainActivity", "Scanned");
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                Log.i("Teste",this.toString());
+                //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
                 this.getProductByBarcode(result.getContents());
             }
@@ -152,18 +160,27 @@ public class HomeActivity extends AppCompatActivity {
                         /**
                          * Got Successfully
                          */
-                        Log.i("TESTE",response.body().getProducts().get(0).getPrice());
-                        productList.add(response.body().getProducts().get(0));
+                        Log.i("TESTE",response.body().getProducts().get(0).getCategory());
 
+                        boolean found = false;
+                        for(Product p: productList) {
+                            if(barcode.equals(p.getBarcode()))
+                                found = true;
+                        }
 
-                        /**
-                         * Binding that List to Adapter
-                         */
-                        adapter = new MyProductAdapter(HomeActivity.this, productList);
-                        listView.setAdapter(adapter);
+                        if(!found) {
+                            productList.add(response.body().getProducts().get(0));
+                            adapter = new MyProductAdapter(HomeActivity.this, productList);
+                            listView.setAdapter(adapter);
+                            updateTotalPrice();
+
+                        }
+                        else {
+                            Toast.makeText(act, "Product already in cart!", Toast.LENGTH_LONG).show();
+                        }
 
                     } else {
-                        //Snackbar.make(parentView, R.string.string_some_thing_wrong, Snackbar.LENGTH_LONG).show();
+                        Toast.makeText(act, "Product not found!", Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -179,11 +196,12 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    //Delete products from cart
     private AlertDialog deleteDialog(final int pos) {
         AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
                 //set message, title, and icon
                 .setTitle("Delete")
-                .setMessage("Do you want to Delete")
+                .setMessage("Do you want to delete "+productList.get(pos).getModel())
                 .setIcon(ic_menu_delete)
 
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
@@ -191,6 +209,7 @@ public class HomeActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         productList.remove(pos);
                         adapter.notifyDataSetChanged();
+                        updateTotalPrice();
                         dialog.dismiss();
                     }
 
@@ -207,5 +226,15 @@ public class HomeActivity extends AppCompatActivity {
         return myQuittingDialogBox;
 
     }
+
+    private void updateTotalPrice() {
+        DecimalFormat df = new DecimalFormat("#.00");
+        double totalPrice=0;
+        for(Product p: productList) {
+            totalPrice+=Double.parseDouble(p.getPrice());
+        }
+        totalPriceView.setText("Total price: "+df.format(totalPrice)+" €");
+    }
+
 
 }
