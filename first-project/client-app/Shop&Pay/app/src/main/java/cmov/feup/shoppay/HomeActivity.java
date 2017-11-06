@@ -1,7 +1,9 @@
 package cmov.feup.shoppay;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +29,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import utils.AppStatus;
+
+import static android.R.drawable.ic_menu_delete;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -50,6 +55,22 @@ public class HomeActivity extends AppCompatActivity {
          * Getting List
          */
         listView = (ListView) findViewById(R.id.listView);
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                // TODO Auto-generated method stub
+
+                Log.v("long clicked","pos: " + pos);
+
+
+                AlertDialog diaBox = deleteDialog(pos);
+                diaBox.show();
+
+                return true;
+            }
+        });
 
         //OPEN BARCODE SCANNER
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -156,6 +177,35 @@ public class HomeActivity extends AppCompatActivity {
 
             //Snackbar.make(parentView, R.string.string_internet_connection_not_available, Snackbar.LENGTH_LONG).show();
         }
+    }
+
+    private AlertDialog deleteDialog(final int pos) {
+        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
+                //set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to Delete")
+                .setIcon(ic_menu_delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        productList.remove(pos);
+                        adapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+
+                })
+
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return myQuittingDialogBox;
+
     }
 
 }
