@@ -35,4 +35,8 @@ public class ProductList {
         this.products = products;
     }
 
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
+
 }

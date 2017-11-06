@@ -107,27 +107,27 @@ public class User {
         this.fiscal = fiscal;
     }
 
-    public CardType getCc_type() {
+    public CardType getCCType() {
         return cc_type;
     }
 
-    public void setCc_type(CardType cc_type) {
+    public void setCC_Type(CardType cc_type) {
         this.cc_type = cc_type;
     }
 
-    public String getCc_number() {
+    public String getCCNumber() {
         return cc_number;
     }
 
-    public void setCc_number(String cc_number) {
+    public void setCCNumber(String cc_number) {
         this.cc_number = cc_number;
     }
 
-    public Date getCc_date() {
+    public Date getCCDate() {
         return cc_date;
     }
 
-    public void setCc_date(Date cc_date) {
+    public void setCCDate(Date cc_date) {
         this.cc_date = cc_date;
     }
 }

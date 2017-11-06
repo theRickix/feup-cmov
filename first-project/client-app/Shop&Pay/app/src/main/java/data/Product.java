@@ -11,6 +11,9 @@ public class Product {
     @SerializedName("model")
     @Expose
     private String model;
+    @SerializedName("barcode")
+    @Expose
+    private String barcode;
     @SerializedName("maker_id")
     @Expose
     private int makerId;
@@ -34,10 +37,11 @@ public class Product {
      * @param categoryId
      * @param makerId
      */
-    public Product(int id, String model, int makerId, int categoryId, String price) {
+    public Product(int id, String model, String barcode, int makerId, int categoryId, String price) {
         super();
         this.id = id;
         this.model = model;
+        this.barcode = barcode;
         this.makerId = makerId;
         this.categoryId = categoryId;
         this.price = price;
@@ -57,6 +61,14 @@ public class Product {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public int getMakerId() {

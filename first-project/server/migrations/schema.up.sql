@@ -22,7 +22,7 @@ CREATE TABLE products (
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	name TEXT,
-	nickname TEXT UNIQUE,
+	username TEXT UNIQUE,
 	email TEXT UNIQUE,
 	password TEXT,
 	fiscal TEXT UNIQUE,
@@ -34,7 +34,8 @@ CREATE TABLE users (
 
 CREATE TABLE purchases (
 	id SERIAL PRIMARY KEY,
-	purchase_date DATETIME,
+	purchase_date DATE,
+	purchase_time TIME,
 	user_id INTEGER REFERENCES users(id),
 	validation_token UUID
 );

@@ -14,6 +14,7 @@ var db = pgp(connectionString);
 module.exports = {
     getAllProducts: getAllProducts,
     getSingleProduct: getSingleProduct,
+    getSingleProductByBarcode: getSingleProductByBarcode,
     createProduct: createProduct,
     updateProduct: updateProduct,
     removeProduct: removeProduct,
@@ -45,6 +46,24 @@ function getSingleProduct(req, res, next) {
           .json({
             status: 'success',
             data: data,
+            message: 'Retrieved ONE product'
+          });
+      })
+      .catch(function (err) {
+        res.status(500)
+          .json({
+            status: 'error'
+          });
+      });
+}
+
+function getSingleProductByBarcode(req, res, next) {
+    db.one('select * from products where barcode = $1', req.params.barcode)
+      .then(function (data) {
+        res.status(200)
+          .json({
+            status: 'success',
+            data: [data],
             message: 'Retrieved ONE product'
           });
       })

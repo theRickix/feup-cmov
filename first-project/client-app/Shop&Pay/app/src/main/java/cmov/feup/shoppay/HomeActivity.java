@@ -51,73 +51,6 @@ public class HomeActivity extends AppCompatActivity {
          */
         listView = (ListView) findViewById(R.id.listView);
 
-        /**
-         * Checking Internet Connection
-         */
-        if (AppStatus.getInstance(this).isOnline()) {
-
-
-
-            final ProgressDialog dialog;
-            /**
-             * Progress Dialog for User Interaction
-             */
-            dialog = new ProgressDialog(HomeActivity.this);
-            dialog.setTitle(getString(R.string.string_getting_json_title));
-            dialog.setMessage(getString(R.string.string_getting_json_message));
-            dialog.show();
-
-            //Creating an object of our api interface
-            ApiService api = RestClient.getApiService();
-
-            /**
-             * Calling JSON
-             */
-            Call<ProductList> call = api.getProducts();
-
-
-            /**
-             * Enqueue Callback will be call when get response...
-             */
-            call.enqueue(new Callback<ProductList>() {
-
-                @Override
-                public void onResponse(Call<ProductList> call, Response<ProductList> response) {
-                    //Dismiss Dialog
-                    dialog.dismiss();
-
-
-                    if(response.isSuccessful()) {
-
-                        /**
-                         * Got Successfully
-                         */
-                        productList = response.body().getProducts();
-                        Log.i("TESTE",productList.get(0).getPrice());
-
-
-                        /**
-                         * Binding that List to Adapter
-                         */
-                        adapter = new MyProductAdapter(HomeActivity.this, productList);
-                        listView.setAdapter(adapter);
-
-                    } else {
-                        //Snackbar.make(parentView, R.string.string_some_thing_wrong, Snackbar.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ProductList> call, Throwable t) {
-                    Log.w("MyTag", "requestFailed", t);
-                }
-            });
-
-        } else {
-
-            //Snackbar.make(parentView, R.string.string_internet_connection_not_available, Snackbar.LENGTH_LONG).show();
-        }
-
         //OPEN BARCODE SCANNER
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
@@ -147,10 +80,82 @@ public class HomeActivity extends AppCompatActivity {
             } else {
                 Log.d("MainActivity", "Scanned");
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+
+                this.getProductByBarcode(result.getContents());
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    protected void getProductByBarcode(final String barcode) {
+        /**
+         * Checking Internet Connection
+         */
+        if (AppStatus.getInstance(this).isOnline()) {
+
+
+
+            final ProgressDialog dialog;
+            /**
+             * Progress Dialog for User Interaction
+             */
+            dialog = new ProgressDialog(HomeActivity.this);
+            dialog.setTitle(getString(R.string.string_getting_json_title));
+            dialog.setMessage(getString(R.string.string_getting_json_message));
+            dialog.show();
+
+            //Creating an object of our api interface
+            ApiService api = RestClient.getApiService();
+
+            /**
+             * Calling JSON
+             */
+            Call<ProductList> call = api.getProductByBarcode(barcode);
+
+
+            /**
+             * Enqueue Callback will be call when get response...
+             */
+            call.enqueue(new Callback<ProductList>() {
+
+                @Override
+                public void onResponse(Call<ProductList> call, Response<ProductList> response) {
+                    //Dismiss Dialog
+                    dialog.dismiss();
+
+
+                    if(response.isSuccessful()) {
+
+                        /**
+                         * Got Successfully
+                         */
+                        Log.i("TESTE",response.body().getProducts().get(0).getPrice());
+                        productList.add(response.body().getProducts().get(0));
+
+
+                        /**
+                         * Binding that List to Adapter
+                         */
+                        adapter = new MyProductAdapter(HomeActivity.this, productList);
+                        listView.setAdapter(adapter);
+
+                    } else {
+                        //Snackbar.make(parentView, R.string.string_some_thing_wrong, Snackbar.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ProductList> call, Throwable t) {
+                    Log.w("MyTag", "requestFailed", t);
+                }
+            });
+
+        } else {
+
+            //Snackbar.make(parentView, R.string.string_internet_connection_not_available, Snackbar.LENGTH_LONG).show();
+        }
+    }
+
 }
