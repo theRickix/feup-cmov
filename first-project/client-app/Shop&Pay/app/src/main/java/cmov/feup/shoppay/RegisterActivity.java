@@ -38,18 +38,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import adapter.MyProductAdapter;
 import api.ApiService;
 import api.RestClient;
 import data.CardType;
-import data.Product;
-import data.ProductList;
 import data.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         act = this;
         // Set up the login form.
         nameView = (EditText) findViewById(R.id.name);
