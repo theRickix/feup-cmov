@@ -49,8 +49,8 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private EditText nameView;
     private EditText addressView;
     private Spinner s;
-    private EditText idcc;
-    private EditText credit_card_number;
+    private EditText ccNumberView;
+    private EditText ccExpirationView;
     private View mProgressView;
     private View mLoginFormView;
     EditText fiscal_number;
@@ -70,8 +70,9 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
 // Apply the adapter to the spinner
         s.setAdapter(adapter);
 
-        idcc=(EditText)findViewById(R.id.cc);
         fiscal_number = (EditText) findViewById(R.id.fiscal_number);
+        ccNumberView = (EditText) findViewById(R.id.credit_card_number);
+        ccExpirationView = (EditText) findViewById(R.id.credit_card_expiration);
 
         addressView = (EditText) findViewById(R.id.address);
         addressView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -79,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     //TODO n sei se vai ficar com isto mas talvez
-                    attemptLogin();
+                    //attemptLogin();
                     return true;
                 }
                 return false;
@@ -90,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptRegister();
             }
         });
 
@@ -110,6 +111,56 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      * TODO aqui faz verificações antes de lançar aquele q far
      */
     private void attemptLogin() {
+        if (mAuthTask != null) {
+            return;
+        }
+
+        // Reset errors.
+        nameView.setError(null);
+        addressView.setError(null);
+
+        // Store values at the time of the login attempt.
+        String email = nameView.getText().toString();
+        String password = addressView.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            addressView.setError(getString(R.string.error_invalid_password));
+            focusView = addressView;
+            cancel = true;
+        }
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            nameView.setError(getString(R.string.error_field_required));
+            focusView = nameView;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            nameView.setError(getString(R.string.error_invalid_email));
+            focusView = nameView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+            showProgress(true);
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute((Void) null);
+            //passar ao home
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void attemptRegister() {
         if (mAuthTask != null) {
             return;
         }

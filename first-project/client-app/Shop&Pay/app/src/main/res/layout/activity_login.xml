@@ -49,14 +49,11 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/cc"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/idcard"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="number"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
@@ -70,10 +67,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
-                    android:imeActionId="@+id/login"
+                    android:imeActionId="@+id/register"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPostalAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/posta_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/postal_code"
+                    android:imeActionId="@+id/register"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
@@ -95,6 +109,25 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/credit_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/idcard"
+                    android:imeActionId="@+id/register"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+
+            </android.support.design.widget.TextInputLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,26 +141,10 @@
                     <Spinner
                         android:id="@+id/credit_card_type"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp" />
-
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="117dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/credit_card_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=""
-                        android:imeActionId="@+id/login"
+                        android:imeActionId="@+id/register"
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
-                        android:inputType="number"
-                        android:maxLines="1" />
+                        android:layout_height="55dp" />
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -141,8 +158,8 @@
                         android:id="@+id/credit_card_expiration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint=""
-                        android:imeActionId="@+id/login"
+                        android:hint="@string/credit_card_expiration"
+                        android:imeActionId="@+id/register"
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
                         android:inputType="date"

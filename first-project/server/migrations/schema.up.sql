@@ -22,13 +22,14 @@ CREATE TABLE products (
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	name TEXT,
-	username TEXT UNIQUE,
 	email TEXT UNIQUE,
-	password TEXT,
+	address TEXT,
+	postal_code TEXT,
 	fiscal TEXT UNIQUE,
 	cc_type CARD_TYPE,
 	cc_number TEXT,
 	cc_validity DATE,
+	cc_name TEXT
 	public_key TEXT
 );
 

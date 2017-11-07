@@ -30,7 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HomeActivity"
+            android:name=".RegisterActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -40,12 +40,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".HomeActivity" >
+            android:name=".HomeActivity"
+            android:parentActivityName=".RegisterActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
+                android:value=".HomeActivity" />
             ></activity>
 
     </application>
