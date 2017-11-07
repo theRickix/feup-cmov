@@ -3,6 +3,11 @@ package data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.interfaces.RSAKey;
 import java.sql.Date;
 
 /**
@@ -54,6 +59,7 @@ public class User {
     @Expose
     private String public_key;
 
+    private String private_key;
     public int getId() {
         return id;
     }
@@ -154,10 +160,24 @@ public class User {
         this.cc_expiry_month = cc_expiry_month;
         this.cc_expiry_year = cc_expiry_year;
 
-        generatePublicAndPrivateKey();
+        try {
+            generatePublicAndPrivateKey();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void generatePublicAndPrivateKey() {
-
+    private void generatePublicAndPrivateKey() throws NoSuchAlgorithmException {
+        KeyPairGenerator generator = null;
+        SecureRandom random = SecureRandom.getInstance("SHA1WithRSA");
+        try {
+            generator = KeyPairGenerator.getInstance("RSA");
+            generator.initialize(386, random);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        KeyPair pair =generator.generateKeyPair();
+        public_key=pair.getPublic().toString();
+        private_key=pair.getPrivate().toString();
     }
 }
