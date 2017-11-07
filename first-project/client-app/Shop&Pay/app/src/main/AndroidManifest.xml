@@ -4,7 +4,7 @@
     package="cmov.feup.shoppay">
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="15"
         android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.INTERNET" />

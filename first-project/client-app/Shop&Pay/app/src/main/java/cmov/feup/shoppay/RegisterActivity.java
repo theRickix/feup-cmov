@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,7 +28,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -51,9 +57,11 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private Spinner s;
     private EditText ccNumberView;
     private EditText ccExpirationView;
+    private EditText emailView;
+    private EditText postalCodeView;
     private View mProgressView;
     private View mLoginFormView;
-    EditText fiscal_number;
+    EditText fiscalNumberView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +78,42 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
 // Apply the adapter to the spinner
         s.setAdapter(adapter);
 
-        fiscal_number = (EditText) findViewById(R.id.fiscal_number);
+        fiscalNumberView = (EditText) findViewById(R.id.fiscal_number);
         ccNumberView = (EditText) findViewById(R.id.credit_card_number);
         ccExpirationView = (EditText) findViewById(R.id.credit_card_expiration);
+        emailView = (EditText) findViewById(R.id.email);
+        postalCodeView = (EditText) findViewById(R.id.postal_code);
+
+        //create Picker Dialog
+        final YearMonthPickerDialog yearMonthPickerDialog = new YearMonthPickerDialog(this, new YearMonthPickerDialog.OnDateSetListener() {
+            @Override
+            public void onYearMonthSet(int year, int month) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM/yyyy");
+
+                ccExpirationView.setText(dateFormat.format(calendar.getTime()));
+            }
+        });
+
+        //Assign Picker to Expiration Date
+        ccExpirationView.setInputType(InputType.TYPE_NULL);
+        ccExpirationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yearMonthPickerDialog.show();
+            }
+        });
+        ccExpirationView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    yearMonthPickerDialog.show();
+                }
+            }
+        });
 
         addressView = (EditText) findViewById(R.id.address);
         addressView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -170,18 +211,18 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         addressView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = nameView.getText().toString();
-        String password = addressView.getText().toString();
+        String name = nameView.getText().toString();
+        String email = emailView.getText().toString();
+        String address = addressView.getText().toString();
+        String postalCode = postalCodeView.getText().toString();
+        String fiscalNumber = fiscalNumberView.getText().toString();
+        String ccNumber = ccNumberView.getText().toString();
+        String ccType = s.getSelectedItem().toString();
+
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            addressView.setError(getString(R.string.error_invalid_password));
-            focusView = addressView;
-            cancel = true;
-        }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
@@ -202,7 +243,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            //mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
             //passar ao home
             Intent intent = new Intent(this, HomeActivity.class);

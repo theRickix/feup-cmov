@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/posta_code"
+                    android:id="@+id/postal_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/postal_code"
@@ -162,7 +162,6 @@
                         android:imeActionId="@+id/register"
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
-                        android:inputType="date"
                         android:maxLines="1" />
 
 
