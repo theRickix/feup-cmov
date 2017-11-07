@@ -146,7 +146,7 @@ function register(req,res,next){
 }
 
 function getUserId(req,res,next){
-    db.one('SELECT id FROM users WHERE email=$1',req.params.email)
+    db.one('SELECT * FROM users WHERE email=$1',req.params.email)
     .then(function () {
         res.status(200)
           .json({
