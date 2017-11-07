@@ -18,6 +18,7 @@ module.exports = {
     createProduct: createProduct,
     updateProduct: updateProduct,
     removeProduct: removeProduct,
+    getUserId: getUserId,
     register:register,
     login:login
 };
@@ -131,12 +132,27 @@ function removeProduct(req, res, next) {
 }
 
 function register(req,res,next){
-    db.none('insert into users(username,password)values(${username},${password_cripted})',req.body)
+    db.none('insert into users(name,email,address,postal_code,fiscal,cc_type,cc_number,cc_expiry_month, cc_expiry_year,public_key) values(${name},${email},${address},${postal_code},${fiscal},${cc_type},${cc_number},${cc_expiry_month}, ${cc_expiry_year},${public_key})',req.body)
     .then(function () {
         res.status(200)
           .json({
             status: 'success',
-            message: 'User registered'
+            message: 'Registration sucessful.'
+          });
+      })
+      .catch(function (err) {
+        return next(err);
+      });
+}
+
+function getUserId(req,res,next){
+    db.one('SELECT id FROM users WHERE email=$1',req.params.email)
+    .then(function () {
+        res.status(200)
+          .json({
+            status: 'success',
+            data: data,
+            message: 'Registration sucessful.'
           });
       })
       .catch(function (err) {
@@ -146,8 +162,8 @@ function register(req,res,next){
 /* preciso de ver quais são os requests caso o user n esteja já registado
 */
 function login(req,res,next){
-    var username=req.params.username;
-    db.one('select password from users where username=$1',username)
+    var name=req.params.name;
+    db.any('select * from users ',name)
      .then(function (data) {
         res.status(200)
           .json({
@@ -157,9 +173,6 @@ function login(req,res,next){
           });
       })
       .catch(function (err) {
-        res.status(500)
-          .json({
-            status: 'error'
-          });
+        return next(err);
       });
 }

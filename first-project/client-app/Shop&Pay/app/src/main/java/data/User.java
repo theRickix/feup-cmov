@@ -3,6 +3,7 @@ package data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -14,7 +15,7 @@ import java.sql.Date;
  * Created by JP on 04/11/2017.
  */
 
-public class User {
+public class User implements Serializable {
     @SerializedName("id")
     @Expose
     private int id;
@@ -60,6 +61,7 @@ public class User {
     private String public_key;
 
     private String private_key;
+
     public int getId() {
         return id;
     }
@@ -167,9 +169,35 @@ public class User {
         }
     }
 
+    public String getPrivate_key() {
+        return private_key;
+    }
+
+    public void setPrivate_key(String private_key) {
+        this.private_key = private_key;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", postal_code='" + postal_code + '\'' +
+                ", fiscal='" + fiscal + '\'' +
+                ", cc_type=" + cc_type +
+                ", cc_number='" + cc_number + '\'' +
+                ", cc_expiry_month=" + cc_expiry_month +
+                ", cc_expiry_year=" + cc_expiry_year +
+                ", public_key='" + public_key + '\'' +
+                ", private_key='" + private_key + '\'' +
+                '}';
+    }
+
     private void generatePublicAndPrivateKey() throws NoSuchAlgorithmException {
         KeyPairGenerator generator = null;
-        SecureRandom random = SecureRandom.getInstance("SHA1WithRSA");
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
         try {
             generator = KeyPairGenerator.getInstance("RSA");
             generator.initialize(386, random);

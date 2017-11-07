@@ -3,6 +3,8 @@ package cmov.feup.shoppay;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -28,17 +30,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import adapter.MyProductAdapter;
+import api.ApiService;
+import api.RestClient;
 import data.CardType;
+import data.Product;
+import data.ProductList;
 import data.User;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -66,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private View mProgressView;
     private View mLoginFormView;
     EditText fiscalNumberView;
+    private Activity act;
 
     private int expiryMonth,expiryYear;
 
@@ -73,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        act = this;
         // Set up the login form.
         nameView = (EditText) findViewById(R.id.name);
         populateAutoComplete();
@@ -153,62 +169,6 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     }
 
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     * TODO aqui faz verificações antes de lançar aquele q far
-     */
-    /*private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        nameView.setError(null);
-        addressView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = nameView.getText().toString();
-        String password = addressView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            addressView.setError(getString(R.string.error_invalid_password));
-            focusView = addressView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            nameView.setError(getString(R.string.error_field_required));
-            focusView = nameView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            nameView.setError(getString(R.string.error_invalid_email));
-            focusView = nameView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-            //passar ao home
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        }
-    }*/
-
     private void attemptRegister() {
         if (mAuthTask != null) {
             return;
@@ -282,13 +242,10 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             showProgress(true);
             User user = new User(name,email,address,postalCode,fiscalNumber, CardType.valueOf(ccType),ccNumber,expiryMonth,expiryYear);
 
-            Log.i("Teste",user.getName());
+            Log.i("Teste",user.toString());
 
-            /*mAuthTask = new UserRegisterTask(user);
+            mAuthTask = new UserRegisterTask(user);
             mAuthTask.execute((Void) null);
-            //passar ao home
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);*/
         }
     }
 
@@ -300,6 +257,24 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
+    }
+
+    public void saveMetaFile(User user){
+        String FILENAME = "metadata";
+
+
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+            fos.write(user.getPrivate_key().getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     /**
@@ -392,57 +367,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         int IS_PRIMARY = 1;
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-   /* public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-
-
-            // TODO: REGISTER.
-
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                addressView.setError(getString(R.string.error_incorrect_password));
-                addressView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }*/
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
@@ -467,11 +392,24 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                 return false;
             }
 
+            final boolean[] bool = {true};
+            ApiService api = RestClient.getApiService();
+            Call<User> call = api.register(mUser);
+            call.enqueue(new Callback<User>() {
 
+                public void onResponse(Call<User> call, Response<User> response) {
 
-            // TODO: REGISTER.
+                    if(response.isSuccessful())
+                        bool[0] = true;
+                }
 
-            return true;
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    bool[0] = false;
+                }
+            });
+
+            return bool[0];
         }
 
         @Override
@@ -481,9 +419,11 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
 
             if (success) {
                 finish();
+                Intent intent = new Intent(act, HomeActivity.class);
+                intent.putExtra("user", mUser);
+                startActivity(intent);
             } else {
-                addressView.setError(getString(R.string.error_incorrect_password));
-                addressView.requestFocus();
+                Toast.makeText(act, "Registration error.", Toast.LENGTH_LONG).show();
             }
         }
 

@@ -28,8 +28,8 @@ CREATE TABLE users (
 	fiscal TEXT UNIQUE,
 	cc_type CARD_TYPE,
 	cc_number TEXT,
-	cc_validity DATE,
-	cc_name TEXT
+	cc_expiry_month INTEGER,
+	cc_expiry_year INTEGER,
 	public_key TEXT
 );
 

@@ -27,6 +27,7 @@ import api.ApiService;
 import api.RestClient;
 import data.Product;
 import data.ProductList;
+import data.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,12 +45,20 @@ public class HomeActivity extends AppCompatActivity {
     private MyProductAdapter adapter;
     private Activity act;
     private TextView totalPriceView;
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         act = this;
+
+        Intent i = getIntent();
+        user = (User)i.getSerializableExtra("user");
+
+        Toast.makeText(act, "Logged in as "+user.getName(), Toast.LENGTH_LONG).show();
+
         /**
          * Array List for Binding Data from JSON to this List
          */
