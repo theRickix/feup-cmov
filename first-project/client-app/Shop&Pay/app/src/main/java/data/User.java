@@ -18,17 +18,17 @@ public class User {
     @Expose
     private String name;
 
-    @SerializedName("username")
-    @Expose
-    private String username;
-
     @SerializedName("email")
     @Expose
     private String email;
 
-    @SerializedName("password")
+    @SerializedName("address")
     @Expose
-    private String password;
+    private String address;
+
+    @SerializedName("postal_code")
+    @Expose
+    private String postal_code;
 
     @SerializedName("fiscal")
     @Expose
@@ -42,22 +42,17 @@ public class User {
     @Expose
     private String cc_number;
 
-    @SerializedName("cc_date")
+    @SerializedName("cc_expiry_month")
     @Expose
-    private Date cc_date;
+    private int cc_expiry_month;
 
-    public User(int id, String name, String username, String email,
-                String password, String fiscal, CardType cc_type, String cc_number, Date cc_date) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.fiscal = fiscal;
-        this.cc_type = cc_type;
-        this.cc_number = cc_number;
-        this.cc_date = cc_date;
-    }
+    @SerializedName("cc_expiry_year")
+    @Expose
+    private int cc_expiry_year;
+
+    @SerializedName("public_key")
+    @Expose
+    private String public_key;
 
     public int getId() {
         return id;
@@ -75,14 +70,6 @@ public class User {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -91,12 +78,20 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostal_code() {
+        return postal_code;
+    }
+
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
     }
 
     public String getFiscal() {
@@ -107,27 +102,62 @@ public class User {
         this.fiscal = fiscal;
     }
 
-    public CardType getCCType() {
+    public CardType getCc_type() {
         return cc_type;
     }
 
-    public void setCC_Type(CardType cc_type) {
+    public void setCc_type(CardType cc_type) {
         this.cc_type = cc_type;
     }
 
-    public String getCCNumber() {
+    public String getCc_number() {
         return cc_number;
     }
 
-    public void setCCNumber(String cc_number) {
+    public void setCc_number(String cc_number) {
         this.cc_number = cc_number;
     }
 
-    public Date getCCDate() {
-        return cc_date;
+    public int getCc_expiry_month() {
+        return cc_expiry_month;
     }
 
-    public void setCCDate(Date cc_date) {
-        this.cc_date = cc_date;
+    public void setCc_expiry_month(int cc_expiry_month) {
+        this.cc_expiry_month = cc_expiry_month;
+    }
+
+    public int getCc_expiry_year() {
+        return cc_expiry_year;
+    }
+
+    public void setCc_expiry_year(int cc_expiry_year) {
+        this.cc_expiry_year = cc_expiry_year;
+    }
+
+    public String getPublic_key() {
+        return public_key;
+    }
+
+    public void setPublic_key(String public_key) {
+        this.public_key = public_key;
+    }
+
+    public User(String name, String email, String address, String postal_code, String fiscal, CardType cc_type, String cc_number, int cc_expiry_month, int cc_expiry_year) {
+
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.postal_code = postal_code;
+        this.fiscal = fiscal;
+        this.cc_type = cc_type;
+        this.cc_number = cc_number;
+        this.cc_expiry_month = cc_expiry_month;
+        this.cc_expiry_year = cc_expiry_year;
+
+        generatePublicAndPrivateKey();
+    }
+
+    private void generatePublicAndPrivateKey() {
+
     }
 }

@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +37,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import data.CardType;
+import data.User;
+
 
 /**
  * A login screen that offers login via email/password.
@@ -49,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
+    private UserRegisterTask mAuthTask = null;
 
     // UI references.
     private EditText nameView;
@@ -63,6 +67,8 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private View mLoginFormView;
     EditText fiscalNumberView;
 
+    private int expiryMonth,expiryYear;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +78,10 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         populateAutoComplete();
         s= (Spinner)findViewById(R.id.credit_card_type);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.planets_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+                R.array.card_types_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         s.setAdapter(adapter);
 
         fiscalNumberView = (EditText) findViewById(R.id.fiscal_number);
@@ -88,6 +94,8 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         final YearMonthPickerDialog yearMonthPickerDialog = new YearMonthPickerDialog(this, new YearMonthPickerDialog.OnDateSetListener() {
             @Override
             public void onYearMonthSet(int year, int month) {
+                expiryMonth = month;
+                expiryYear = year;
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
@@ -151,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      * errors are presented and no actual login attempt is made.
      * TODO aqui faz verificações antes de lançar aquele q far
      */
-    private void attemptLogin() {
+    /*private void attemptLogin() {
         if (mAuthTask != null) {
             return;
         }
@@ -199,7 +207,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
-    }
+    }*/
 
     private void attemptRegister() {
         if (mAuthTask != null) {
@@ -219,19 +227,48 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         String ccNumber = ccNumberView.getText().toString();
         String ccType = s.getSelectedItem().toString();
 
-
         boolean cancel = false;
         View focusView = null;
 
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(name)) {
             nameView.setError(getString(R.string.error_field_required));
             focusView = nameView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        }
+        else if (TextUtils.isEmpty(email)) {
+            emailView.setError(getString(R.string.error_field_required));
+            focusView = emailView;
+            cancel = true;
+        }
+        else if (!isEmailValid(email)) {
             nameView.setError(getString(R.string.error_invalid_email));
             focusView = nameView;
+            cancel = true;
+        }
+        else if (TextUtils.isEmpty(address)) {
+            addressView.setError(getString(R.string.error_field_required));
+            focusView = addressView;
+            cancel = true;
+        }
+        else if (TextUtils.isEmpty(postalCode)) {
+            postalCodeView.setError(getString(R.string.error_field_required));
+            focusView = postalCodeView;
+            cancel = true;
+        }
+        else if (TextUtils.isEmpty(fiscalNumber)) {
+            fiscalNumberView.setError(getString(R.string.error_field_required));
+            focusView = fiscalNumberView;
+            cancel = true;
+        }
+        else if (TextUtils.isEmpty(ccNumber)) {
+            ccNumberView.setError(getString(R.string.error_field_required));
+            focusView = ccNumberView;
+            cancel = true;
+        }
+        else if (expiryMonth==0 || expiryYear==0) {
+            ccExpirationView.setError(getString(R.string.error_field_required));
+            focusView = ccExpirationView;
             cancel = true;
         }
 
@@ -241,13 +278,17 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             focusView.requestFocus();
         } else {
             // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            // perform the user register attempt.
             showProgress(true);
-            //mAuthTask = new UserLoginTask(email, password);
+            User user = new User(name,email,address,postalCode,fiscalNumber, CardType.valueOf(ccType),ccNumber,expiryMonth,expiryYear);
+
+            Log.i("Teste",user.getName());
+
+            /*mAuthTask = new UserRegisterTask(user);
             mAuthTask.execute((Void) null);
             //passar ao home
             Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 
@@ -355,7 +396,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+   /* public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
         private final String mPassword;
@@ -363,6 +404,56 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+
+            try {
+                // Simulate network access.
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                return false;
+            }
+
+
+
+            // TODO: REGISTER.
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            showProgress(false);
+
+            if (success) {
+                finish();
+            } else {
+                addressView.setError(getString(R.string.error_incorrect_password));
+                addressView.requestFocus();
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+            showProgress(false);
+        }
+    }*/
+
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     */
+    public class UserRegisterTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final User mUser;
+
+        UserRegisterTask(User user) {
+            mUser = user;
         }
 
         @Override
