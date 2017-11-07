@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -259,23 +260,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         return password.length() > 4;
     }
 
-    public void saveMetaFile(User user){
-        String FILENAME = "metadata";
 
-
-        FileOutputStream fos = null;
-        try {
-            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fos.write(user.getPrivate_key().getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
     /**
      * Shows the progress UI and hides the login form.
@@ -432,6 +417,42 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             mAuthTask = null;
             showProgress(false);
         }
+    }
+    public String loadFile(){
+        String FILENAME = "metadata";
+        FileInputStream fin=null;
+        try{
+            fin=openFileInput(FILENAME);
+        }catch (FileNotFoundException e){
+            
+            return null;
+        }
+
+        byte []a=new byte[368];
+        try {
+            fin.read(a);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return a.toString();
+
+    }
+    public void saveMetaFile(User user){
+        String FILENAME = "metadata";
+
+
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+            fos.write(user.getPrivate_key().getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
 

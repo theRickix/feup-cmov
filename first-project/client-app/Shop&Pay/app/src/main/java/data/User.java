@@ -200,7 +200,7 @@ public class User implements Serializable {
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
         try {
             generator = KeyPairGenerator.getInstance("RSA");
-            generator.initialize(386, random);
+            generator.initialize(368, random);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
