@@ -32,12 +32,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.scottyab.aescrypt.AESCrypt;
 import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -69,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     // UI references.
     private EditText nameView;
     private EditText addressView;
+    private EditText passwordView;
     private Spinner s;
     private EditText ccNumberView;
     private EditText ccExpirationView;
@@ -88,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         act = this;
         // Set up the login form.
         nameView = (EditText) findViewById(R.id.name);
+        passwordView = (EditText) findViewById(R.id.password);
         populateAutoComplete();
         s= (Spinner)findViewById(R.id.credit_card_type);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -137,23 +141,16 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         });
 
         addressView = (EditText) findViewById(R.id.address);
-        addressView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    //TODO n sei se vai ficar com isto mas talvez
-                    //attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptRegister();
+                try {
+                    attemptRegister();
+                } catch (GeneralSecurityException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -166,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     }
 
 
-    private void attemptRegister() {
+    private void attemptRegister() throws GeneralSecurityException {
         if (mAuthTask != null) {
             return;
         }
@@ -178,6 +175,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         // Store values at the time of the login attempt.
         String name = nameView.getText().toString();
         String email = emailView.getText().toString();
+        String password = passwordView.getText().toString();
         String address = addressView.getText().toString();
         String postalCode = postalCodeView.getText().toString();
         String fiscalNumber = fiscalNumberView.getText().toString();
@@ -201,6 +199,11 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         else if (!isEmailValid(email)) {
             nameView.setError(getString(R.string.error_invalid_email));
             focusView = nameView;
+            cancel = true;
+        }
+        else if (TextUtils.isEmpty(password)) {
+            passwordView.setError(getString(R.string.error_field_required));
+            focusView = passwordView;
             cancel = true;
         }
         else if (TextUtils.isEmpty(address)) {
@@ -237,7 +240,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user register attempt.
             showProgress(true);
-            User user = new User(name,email,address,postalCode,fiscalNumber, CardType.valueOf(ccType),ccNumber,expiryMonth,expiryYear);
+            User user = new User(name,email,AESCrypt.encrypt(password,"gjNEd34DK"),address,postalCode,fiscalNumber, CardType.valueOf(ccType),ccNumber,expiryMonth,expiryYear);
 
             Log.i("Teste",user.toString());
 

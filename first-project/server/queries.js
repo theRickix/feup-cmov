@@ -132,7 +132,7 @@ function removeProduct(req, res, next) {
 }
 
 function register(req,res,next){
-    db.none('insert into users(name,email,address,postal_code,fiscal,cc_type,cc_number,cc_expiry_month, cc_expiry_year,public_key) values(${name},${email},${address},${postal_code},${fiscal},${cc_type},${cc_number},${cc_expiry_month}, ${cc_expiry_year},${public_key})',req.body)
+    db.none('insert into users(name,email,password,address,postal_code,fiscal,cc_type,cc_number,cc_expiry_month, cc_expiry_year,public_key) values(${name},${email},${password},${address},${postal_code},${fiscal},${cc_type},${cc_number},${cc_expiry_month}, ${cc_expiry_year},${public_key})',req.body)
     .then(function () {
         res.status(200)
           .json({

@@ -23,6 +23,7 @@ CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	name TEXT,
 	email TEXT UNIQUE,
+	password TEXT,
 	address TEXT,
 	postal_code TEXT,
 	fiscal TEXT UNIQUE,

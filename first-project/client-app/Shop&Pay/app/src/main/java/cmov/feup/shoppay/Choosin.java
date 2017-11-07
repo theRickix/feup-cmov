@@ -35,7 +35,7 @@ public class Choosin extends AppCompatActivity {
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    intent = new Intent(act, LoginActivity.class);
+                   // intent = new Intent(act, LoginActivity.class);
                 }
             });
             register = (ImageButton) findViewById(R.id.register);

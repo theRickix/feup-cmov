@@ -28,6 +28,10 @@ public class User implements Serializable {
     @Expose
     private String email;
 
+    @SerializedName("password")
+    @Expose
+    private String password;
+
     @SerializedName("address")
     @Expose
     private String address;
@@ -142,6 +146,14 @@ public class User implements Serializable {
         this.cc_expiry_year = cc_expiry_year;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPublic_key() {
         return public_key;
     }
@@ -150,10 +162,11 @@ public class User implements Serializable {
         this.public_key = public_key;
     }
 
-    public User(String name, String email, String address, String postal_code, String fiscal, CardType cc_type, String cc_number, int cc_expiry_month, int cc_expiry_year) {
+    public User(String name, String email, String password, String address, String postal_code, String fiscal, CardType cc_type, String cc_number, int cc_expiry_month, int cc_expiry_year) {
 
         this.name = name;
         this.email = email;
+        this.password = password;
         this.address = address;
         this.postal_code = postal_code;
         this.fiscal = fiscal;
