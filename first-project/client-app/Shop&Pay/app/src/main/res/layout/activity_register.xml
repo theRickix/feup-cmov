@@ -81,9 +81,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
-                    android:imeActionId="@+id/register"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
                     android:inputType="textPostalAddress"
                     android:maxLines="1" />
 
@@ -98,9 +95,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/postal_code"
-                    android:imeActionId="@+id/register"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -115,9 +109,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fiscal_number"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
                     android:inputType="number"
                     android:maxLines="1" />
 
@@ -133,9 +124,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/idcard"
-                    android:imeActionId="@+id/register"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
                     android:inputType="number"
                     android:maxLines="1" />
 
@@ -155,9 +143,6 @@
                     <Spinner
                         android:id="@+id/credit_card_type"
                         android:layout_width="match_parent"
-                        android:imeActionId="@+id/register"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:imeOptions="actionUnspecified"
                         android:layout_height="55dp" />
 
 
@@ -173,9 +158,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/credit_card_expiration"
-                        android:imeActionId="@+id/register"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:imeOptions="actionUnspecified"
                         android:maxLines="1" />
 
 
