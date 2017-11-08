@@ -46,8 +46,7 @@ CREATE TABLE purchase_rows (
 	id SERIAL PRIMARY KEY,
 	purchase_id INTEGER REFERENCES purchases(id),
 	product_id INTEGER REFERENCES products(id),
-	price NUMERIC(10,2),
-	stock INTEGER
+	price NUMERIC(10,2)
 );
 
 CREATE TABLE pictures (
