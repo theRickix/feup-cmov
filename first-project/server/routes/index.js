@@ -11,6 +11,7 @@ router.post('/api/products', db.createProduct);
 router.put('/api/products/:id', db.updateProduct);
 router.delete('/api/products/:id', db.removeProduct);
 router.post('/api/users',db.register);
-router.get('/api/users/:name',db.login);
+router.post('/api/users/login',db.login);
 router.get('/api/users/email=:email',db.getUserId);
+router.put('/api/users/update/:id',db.updateUserPublicKey)
 module.exports = router;

@@ -20,7 +20,8 @@ module.exports = {
     removeProduct: removeProduct,
     getUserId: getUserId,
     register:register,
-    login:login
+    login:login,
+    updateUserPublicKey:  updateUserPublicKey
 };
 
 
@@ -159,17 +160,34 @@ function getUserId(req,res,next){
         return next(err);
       });
 }
-/* preciso de ver quais são os requests caso o user n esteja já registado
-*/
+
 function login(req,res,next){
-    var name=req.params.name;
-    db.any('select * from users ',name)
+    var email=req.body.email;
+    var password=req.body.password;
+    db.one('select * from users WHERE email=$1 AND password=$2 ',[email,password])
      .then(function (data) {
         res.status(200)
           .json({
             status: 'success',
-            password: data,
-            message: 'Username exists'
+            data: [data],
+            message: 'Login sucessful.'
+          });
+                 
+      })
+      .catch(function (err) {
+        console.log(err);
+        return next(err);
+      });
+}
+
+function updateUserPublicKey(req, res, next) {
+  db.none('UPDATE users SET public_key=$1 where id=$1',
+      [req.body.public_key, parseInt(req.params.id)])
+      .then(function () {
+        res.status(200)
+          .json({
+            status: 'success',
+            message: 'Updated public key'
           });
       })
       .catch(function (err) {

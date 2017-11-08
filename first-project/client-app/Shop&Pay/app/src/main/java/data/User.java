@@ -162,6 +162,27 @@ public class User implements Serializable {
         this.public_key = public_key;
     }
 
+    public User(User copy) {
+
+        this.id = copy.id;
+        this.name = copy.name;
+        this.email = copy.email;
+        this.password = copy.password;
+        this.address = copy.address;
+        this.postal_code = copy.postal_code;
+        this.fiscal = copy.fiscal;
+        this.cc_type = copy.cc_type;
+        this.cc_number = copy.cc_number;
+        this.cc_expiry_month = copy.cc_expiry_month;
+        this.cc_expiry_year = copy.cc_expiry_year;
+
+        try {
+            generatePublicAndPrivateKey();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
     public User(String name, String email, String password, String address, String postal_code, String fiscal, CardType cc_type, String cc_number, int cc_expiry_month, int cc_expiry_year) {
 
         this.name = name;
@@ -208,7 +229,7 @@ public class User implements Serializable {
                 '}';
     }
 
-    private void generatePublicAndPrivateKey() throws NoSuchAlgorithmException {
+    public void generatePublicAndPrivateKey() throws NoSuchAlgorithmException {
         KeyPairGenerator generator = null;
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
         try {
