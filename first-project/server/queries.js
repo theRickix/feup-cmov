@@ -181,7 +181,7 @@ function login(req,res,next){
 }
 
 function updateUserPublicKey(req, res, next) {
-  db.none('UPDATE users SET public_key=$1 where id=$1',
+  db.none('UPDATE users SET public_key=$1 where id=$2',
       [req.body.public_key, parseInt(req.params.id)])
       .then(function () {
         res.status(200)
@@ -191,6 +191,7 @@ function updateUserPublicKey(req, res, next) {
           });
       })
       .catch(function (err) {
+        console.log(err);
         return next(err);
       });
 }

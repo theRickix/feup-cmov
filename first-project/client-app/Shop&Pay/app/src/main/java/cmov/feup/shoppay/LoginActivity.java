@@ -63,8 +63,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
-
     // UI references.
     private EditText passwordView;
     private EditText emailView;
@@ -91,6 +89,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     attemptLogin();
                 } catch (GeneralSecurityException e) {
                     e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -104,10 +104,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
-    private void attemptLogin() throws GeneralSecurityException {
-        if (mAuthTask != null) {
-            return;
-        }
+    private void attemptLogin() throws GeneralSecurityException, InterruptedException {
 
         // Reset errors.
         emailView.setError(null);
@@ -125,13 +122,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             emailView.setError(getString(R.string.error_field_required));
             focusView = emailView;
             cancel = true;
-        }
-        else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(email)) {
             emailView.setError(getString(R.string.error_invalid_email));
             focusView = emailView;
             cancel = true;
-        }
-        else if (TextUtils.isEmpty(password)) {
+        } else if (TextUtils.isEmpty(password)) {
             passwordView.setError(getString(R.string.error_field_required));
             focusView = passwordView;
             cancel = true;
@@ -147,8 +142,52 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user register attempt.
             showProgress(true);
 
-            mAuthTask = new UserLoginTask(email,AESCrypt.encrypt(password,"gjNEd34DK"));
-            mAuthTask.execute((Void) null);
+            ApiService api = RestClient.getApiService();
+            Call<UserList> call = api.login(email, AESCrypt.encrypt(password, "gjNEd34DK"));
+            call.enqueue(new Callback<UserList>() {
+
+                public void onResponse(Call<UserList> call, Response<UserList> response) {
+
+                    if (response.isSuccessful()) {
+                        user = new User(response.body().getUsers().get(0));
+                        Log.i("Teste", user.toString());
+
+                        ApiService api = RestClient.getApiService();
+                        Call<User> call2 = api.updateUserPublicKey(user.getId(),user);
+                        call2.enqueue(new Callback<User>() {
+
+                            public void onResponse(Call<User> call, Response<User> response) {
+
+                                if(response.isSuccessful()) {
+                                    Intent intent = new Intent(act, HomeActivity.class);
+                                    intent.putExtra("user", user);
+                                    startActivity(intent);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+                                Toast.makeText(act, "Login failed!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                    }
+                    else
+                        Toast.makeText(act, "Login failed!", Toast.LENGTH_LONG).show();
+
+                }
+
+
+                @Override
+                public void onFailure(Call<UserList> call, Throwable t) {
+
+                    Toast.makeText(act, "Login failed!", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            showProgress(false);
+            /*mAuthTask = new UserLoginTask(email,AESCrypt.encrypt(password,"gjNEd34DK"));
+            mAuthTask.execute((Void) null);*/
         }
     }
 
@@ -161,7 +200,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
-
 
 
     /**
@@ -253,135 +291,4 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
     }
-
-
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            final boolean[] bool = {true};
-            ApiService api = RestClient.getApiService();
-            Call<UserList> call = api.login(mEmail,mPassword);
-            call.enqueue(new Callback<UserList>() {
-
-                public void onResponse(Call<UserList> call, Response<UserList> response) {
-
-                    if(response.isSuccessful()) {
-                        bool[0] = true;
-                        user = new User(response.body().getUsers().get(0));
-                        Log.i("Teste",user.toString());
-
-                        /*ApiService api = RestClient.getApiService();
-                        Call<User> call2 = api.updateUserPublicKey(user.getId(),user);
-                        call2.enqueue(new Callback<User>() {
-
-                            public void onResponse(Call<User> call, Response<User> response) {
-
-                                if(response.isSuccessful()) {
-                                    bool[0] = true;
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<User> call, Throwable t) {
-                                bool[0] = false;
-                                Log.i("Teste",t.getMessage());
-                            }
-                        });*/
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<UserList> call, Throwable t) {
-                    bool[0] = false;
-                    Log.i("Teste"," ");
-                }
-            });
-
-
-            return bool[0];
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-
-                Intent intent = new Intent(act, HomeActivity.class);
-                intent.putExtra("user", user);
-                startActivity(intent);
-
-            } else {
-                Toast.makeText(act, "Login error.", Toast.LENGTH_LONG).show();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
-    public String loadFile(){
-        String FILENAME = "metadata";
-        FileInputStream fin=null;
-        try{
-            fin=openFileInput(FILENAME);
-        }catch (FileNotFoundException e){
-
-            return null;
-        }
-
-        byte []a=new byte[368];
-        try {
-            fin.read(a);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return a.toString();
-
-    }
-    public void saveMetaFile(User user){
-        String FILENAME = "metadata";
-
-
-        FileOutputStream fos = null;
-        try {
-            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fos.write(user.getPrivate_key().getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 }
-

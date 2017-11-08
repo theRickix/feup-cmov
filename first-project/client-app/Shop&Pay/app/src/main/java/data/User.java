@@ -162,6 +162,9 @@ public class User implements Serializable {
         this.public_key = public_key;
     }
 
+    public User() {
+
+    }
     public User(User copy) {
 
         this.id = copy.id;
