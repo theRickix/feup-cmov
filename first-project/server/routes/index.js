@@ -14,6 +14,6 @@ router.post('/api/users',db.register);
 router.post('/api/users/login',db.login);
 router.get('/api/users/email=:email',db.getUserId);
 router.put('/api/users/update/:id',db.updateUserPublicKey);
-router.post('/api/purchase/',db.updatePurchase);
-router.post('/api/purchase/row',db.updatePurchaseRow);
+router.post('/api/purchase/',db.insertPurchase);
+router.post('/api/purchase/row',db.insertPurchaseRow);
 module.exports = router;

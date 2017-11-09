@@ -199,13 +199,12 @@ function updateUserPublicKey(req, res, next) {
 }
 
 function insertPurchase(req, res, next) {
-  db.one('INSERT INTO purchases(purchase_date,purchase_time,user_id) VALUES (CURRENT_DATE,CURRENT_TIME,$1) RETURNING id',parseInt(req.body.id))
+  db.one('INSERT INTO purchases(purchase_date,purchase_time,user_id,validation_token) VALUES (CURRENT_DATE,CURRENT_TIME,$1,md5(random()::text || clock_timestamp()::text)::uuid) RETURNING purchases.id',parseInt(req.body.user_id))
    .then(function (data) {
       res.status(200)
         .json({
-          data.id
+          id: data.id
         });
-               
     })
     .catch(function (err) {
       console.log(err);
@@ -214,8 +213,8 @@ function insertPurchase(req, res, next) {
 }
 
 function insertPurchaseRow(req, res, next) {
-    db.none('insert into products(purchase_id,product_id)' +
-        'values($1,$1)',[parseInt(req.body.purchase_id),parseInt(req.boy.product_id)])
+    db.none('insert into purchase_rows(purchase_id,product_id) ' +
+        'values(${purchase_id},${product_id})',req.body)
       .then(function () {
         res.status(200)
           .json({
@@ -225,5 +224,6 @@ function insertPurchaseRow(req, res, next) {
       })
       .catch(function (err) {
         return next(err);
+        console.log(err);
       });
 }
