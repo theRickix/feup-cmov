@@ -12,31 +12,16 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewModel"
+            android:id="@+id/textViewDateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:textAppearance="?android:textAppearanceLarge"
             tools:text="TextView" />
 
+
         <TextView
             android:id="@+id/textViewPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:textAppearance="?android:textAppearanceMedium"
-            tools:text="TextView" />
-
-        <TextView
-            android:id="@+id/textViewCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:textAppearance="?android:textAppearanceSmall"
-            tools:text="TextView" />
-
-        <TextView
-            android:id="@+id/textViewMaker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"

@@ -46,6 +46,8 @@ public class MyProductAdapter extends ArrayAdapter<Product> {
         Product item = getItem(position);
 
         vh.textViewModel.setText(item.getModel());
+        vh.textViewCategory.setText("Category: "+item.getCategory());
+        vh.textViewMaker.setText("Maker: "+item.getMaker());
         vh.textViewPrice.setText(item.getPrice()+" €");
 
         return vh.rootView;
@@ -54,18 +56,24 @@ public class MyProductAdapter extends ArrayAdapter<Product> {
     private static class ViewHolder {
         public final RelativeLayout rootView;
         public final TextView textViewModel;
+        public final TextView textViewCategory;
+        public final TextView textViewMaker;
         public final TextView textViewPrice;
 
-        private ViewHolder(RelativeLayout rootView, TextView textViewModel, TextView textViewPrice) {
+        private ViewHolder(RelativeLayout rootView, TextView textViewModel, TextView textViewCategory, TextView textViewMaker,TextView textViewPrice) {
             this.rootView = rootView;
             this.textViewModel = textViewModel;
+            this.textViewCategory = textViewCategory;
+            this.textViewMaker = textViewMaker;
             this.textViewPrice = textViewPrice;
         }
 
         public static ViewHolder create(RelativeLayout rootView) {
             TextView textViewModel = (TextView) rootView.findViewById(R.id.textViewModel);
+            TextView textViewCategory = (TextView) rootView.findViewById(R.id.textViewCategory);
+            TextView textViewMaker = (TextView) rootView.findViewById(R.id.textViewMaker);
             TextView textViewPrice = (TextView) rootView.findViewById(R.id.textViewPrice);
-            return new ViewHolder(rootView, textViewModel, textViewPrice);
+            return new ViewHolder(rootView, textViewModel, textViewCategory, textViewMaker, textViewPrice);
         }
     }
 }
