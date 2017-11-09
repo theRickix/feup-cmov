@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,15 +20,21 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Map;
 
 import adapter.MyProductAdapter;
 import api.ApiService;
 import api.RestClient;
 import data.Product;
 import data.ProductList;
+import data.ResponseId;
 import data.User;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -104,6 +111,17 @@ public class HomeActivity extends AppCompatActivity {
                 integrator.initiateScan();
             }
         });
+
+        Button button = (Button) findViewById(R.id.button_send);
+        assert button != null;
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(productList.size() > 0)
+                    makePurchase();
+            }
+        });
+
 
     }
 
@@ -243,6 +261,103 @@ public class HomeActivity extends AppCompatActivity {
             totalPrice+=Double.parseDouble(p.getPrice());
         }
         totalPriceView.setText("Total price: "+df.format(totalPrice)+" €");
+    }
+
+    private void makePurchase(){
+        if (AppStatus.getInstance(this).isOnline()) {
+
+
+
+            final ProgressDialog dialog;
+            dialog = new ProgressDialog(HomeActivity.this);
+            dialog.setTitle(getString(R.string.string_getting_json_title));
+            dialog.setMessage(getString(R.string.string_getting_json_message));
+            dialog.show();
+
+            ApiService api = RestClient.getApiService();
+
+            /**
+             * Calling JSON
+             */
+            Call<ResponseId> call = api.addPurchase(user.getId());
+
+
+            call.enqueue(new Callback<ResponseId>() {
+
+                @Override
+                public void onResponse(Call<ResponseId> call, Response<ResponseId> response) {
+                    //Dismiss Dialog
+                    dialog.dismiss();
+
+
+                    if(response.isSuccessful()) {
+
+                        /**
+                         * Got Successfully
+                         */
+                        int purchase_id = response.body().getId();
+
+                        addPurchaseRow(purchase_id);
+
+
+                    } else {
+                        Toast.makeText(act, "Purchase error.", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseId> call, Throwable t) {
+                    Log.w("MyTag", "requestFailed", t);
+                }
+            });
+
+        } else {
+
+            //Snackbar.make(parentView, R.string.string_internet_connection_not_available, Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private void addPurchaseRow(int purchase_id){
+
+
+            ApiService api = RestClient.getApiService();
+
+            /**
+             * Calling JSON
+             */
+            for(Product p: productList) {
+                Log.i("DADOS: ",purchase_id+" "+p.getId());
+                Call<ResponseBody> call = api.addPurchaseRow(purchase_id,p.getId());
+
+
+                call.enqueue(new Callback<ResponseBody>() {
+
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                        if(response.isSuccessful()) {
+
+                            /**
+                             * Got Successfully
+                             */
+                            productList.clear();
+                            adapter = new MyProductAdapter(HomeActivity.this, productList);
+                            listView.setAdapter(adapter);
+                            updateTotalPrice();
+                            Toast.makeText(act, "Purchase done!", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(act, "Purchase error.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.w("MyTag", "requestFailed", t);
+                    }
+                });
+            }
+
     }
 
 

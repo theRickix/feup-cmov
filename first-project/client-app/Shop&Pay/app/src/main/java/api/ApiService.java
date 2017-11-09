@@ -2,8 +2,10 @@ package api;
 
 import data.Product;
 import data.ProductList;
+import data.ResponseId;
 import data.User;
 import data.UserList;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Body;
@@ -34,4 +36,13 @@ public interface ApiService {
 
     @PUT("users/update/{id}/")
     Call<User> updateUserPublicKey(@Path("id") int id, @Body User user);
+
+    @FormUrlEncoded
+    @POST("purchase")
+    Call<ResponseId> addPurchase(@Field("user_id") int user_id);
+
+    @FormUrlEncoded
+    @POST("purchase/row")
+    Call<ResponseBody> addPurchaseRow(@Field("purchase_id") int purchase_id, @Field("product_id") int product_id);
+
 }
