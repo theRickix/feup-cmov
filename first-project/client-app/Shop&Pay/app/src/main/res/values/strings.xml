@@ -27,4 +27,10 @@
     <string name="address">Home Address</string>
     <string name="credit_card_expiration">Expiration Date</string>
     <string name="postal_code">Postal Code</string>
+    <string name="title_activity_navigation">navigation</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

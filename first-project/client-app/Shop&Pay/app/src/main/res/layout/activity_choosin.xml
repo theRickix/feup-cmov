@@ -24,15 +24,18 @@
 
             <ImageButton
                 android:id="@+id/login"
-                android:layout_width="147dp"
+                android:layout_width="150dp"
                 android:layout_height="94dp"
-                app:srcCompat="@android:drawable/btn_star" />
+                android:elevation="@android:dimen/app_icon_size"
+                app:srcCompat="@drawable/ic_action_name" />
 
             <ImageButton
                 android:id="@+id/register"
-                android:layout_width="190dp"
+                android:layout_width="150dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@android:drawable/btn_star" />
+                android:contentDescription="Register"
+                android:elevation="@android:dimen/app_icon_size"
+                app:srcCompat="@drawable/ic_action_register" />
         </TableRow>
 
         <TableRow
