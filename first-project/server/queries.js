@@ -24,7 +24,8 @@ module.exports = {
     updateUserPublicKey:  updateUserPublicKey,
     getAllPurchases: getAllPurchases,
     insertPurchase: insertPurchase,
-    insertPurchaseRow: insertPurchaseRow
+    insertPurchaseRow: insertPurchaseRow,
+    getPurchaseFromToken: getPurchaseFromToken
   };
 
 
@@ -253,7 +254,7 @@ function getPurchaseFromToken(req,res,next){
     .then(function(data){
     res.status(200)
     .json({
-        status:'sucess',
+        status:'success',
         data:data,
         message:'Retrieved your purchases belonging to this token'
     });
