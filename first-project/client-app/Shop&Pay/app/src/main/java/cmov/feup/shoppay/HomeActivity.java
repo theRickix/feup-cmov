@@ -20,7 +20,9 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import adapter.MyProductAdapter;
 import api.ApiService;
@@ -276,6 +278,7 @@ public class HomeActivity extends AppCompatActivity {
             /**
              * Calling JSON
              */
+            Calendar c = Calendar.getInstance();
             Call<ResponsePurchase> call = api.addPurchase(user.getId());
 
 
