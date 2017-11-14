@@ -17,4 +17,5 @@ router.put('/api/users/update/:id',db.updateUserPublicKey);
 router.get('/api/purchase/id=:id',db.getAllPurchases);
 router.post('/api/purchase/',db.insertPurchase);
 router.post('/api/purchase/row',db.insertPurchaseRow);
+router.post('/api/purchase/token',db.getPurchaseFromToken);
 module.exports = router;
