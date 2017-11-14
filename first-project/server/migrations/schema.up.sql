@@ -36,8 +36,7 @@ CREATE TABLE users (
 
 CREATE TABLE purchases (
 	id SERIAL PRIMARY KEY,
-	purchase_date DATE,
-	purchase_time TIME,
+	purchase_timestamp TIMESTAMP,
 	user_id INTEGER REFERENCES users(id),
 	validation_token UUID
 );
