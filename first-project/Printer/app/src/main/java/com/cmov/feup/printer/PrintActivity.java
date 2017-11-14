@@ -13,15 +13,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.UUID;
+
+import api.ApiService;
+import api.RestClient;
+import data.ProductList;
+import data.Purchase;
+import data.PurchaseList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PrintActivity extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     TextView message;
-
+    ApiService api;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Button QRButton, barButton;
-
+        api = RestClient.getApiService();
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_print);
         message = (TextView) findViewById(R.id.message);
         QRButton = (Button) findViewById(R.id.scan1);
@@ -77,7 +89,21 @@ public class PrintActivity extends AppCompatActivity {
                 String contents = data.getStringExtra("SCAN_RESULT");
                 String format = data.getStringExtra("SCAN_RESULT_FORMAT");
 
-                message.setText("Format: " + format + "\nMessage: " + contents);
+                //message.setText("Format: " + format + "\nMessage: " + contents);
+
+                Call<PurchaseList> call=api.getPurchase(UUID.fromString(contents));
+                call.enqueue(new Callback<PurchaseList>() {
+
+                    @Override
+                    public void onResponse(Call<PurchaseList> call, Response<PurchaseList> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<PurchaseList> call, Throwable t) {
+
+                    }
+                });
             }
         }
     }

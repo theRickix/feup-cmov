@@ -3,6 +3,7 @@ package api;
 import java.util.UUID;
 
 import data.ProductList;
+import data.Purchase;
 import data.PurchaseList;
 import data.ResponsePurchase;
 import data.User;
@@ -52,6 +53,6 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("purchase/token")
-    Call<ResponseBody> getPurchase(@Field("token")UUID token);
+    Call<PurchaseList> getPurchase(@Field("token")UUID token);
 
 }
