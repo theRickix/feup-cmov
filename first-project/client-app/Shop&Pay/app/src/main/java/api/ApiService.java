@@ -1,13 +1,11 @@
 package api;
 
-import data.Product;
 import data.ProductList;
-import data.ResponseId;
+import data.ResponsePurchase;
 import data.User;
 import data.UserList;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -39,7 +37,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("purchase")
-    Call<ResponseId> addPurchase(@Field("user_id") int user_id);
+    Call<ResponsePurchase> addPurchase(@Field("user_id") int user_id);
 
     @FormUrlEncoded
     @POST("purchase/row")

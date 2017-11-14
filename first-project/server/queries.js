@@ -199,11 +199,12 @@ function updateUserPublicKey(req, res, next) {
 }
 
 function insertPurchase(req, res, next) {
-  db.one('INSERT INTO purchases(purchase_date,purchase_time,user_id,validation_token) VALUES (CURRENT_DATE,CURRENT_TIME,$1,md5(random()::text || clock_timestamp()::text)::uuid) RETURNING purchases.id',parseInt(req.body.user_id))
+  db.one('INSERT INTO purchases(purchase_date,purchase_time,user_id,validation_token) VALUES (CURRENT_DATE,CURRENT_TIME,$1,md5(random()::text || clock_timestamp()::text)::uuid) RETURNING purchases.id, purchases.validation_token',parseInt(req.body.user_id))
    .then(function (data) {
       res.status(200)
         .json({
-          id: data.id
+          id: data.id,
+          validation_token: data.validation_token
         });
     })
     .catch(function (err) {

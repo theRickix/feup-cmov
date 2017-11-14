@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,19 +19,15 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Map;
 
 import adapter.MyProductAdapter;
 import api.ApiService;
 import api.RestClient;
 import data.Product;
 import data.ProductList;
-import data.ResponseId;
+import data.ResponsePurchase;
 import data.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -41,7 +36,6 @@ import retrofit2.Response;
 import utils.AppStatus;
 
 import static android.R.drawable.ic_menu_delete;
-import static java.lang.System.in;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -260,7 +254,10 @@ public class HomeActivity extends AppCompatActivity {
         for(Product p: productList) {
             totalPrice+=Double.parseDouble(p.getPrice());
         }
-        totalPriceView.setText("Total price: "+df.format(totalPrice)+" €");
+        if(totalPrice != 0)
+            totalPriceView.setText("Total price: "+df.format(totalPrice)+" €");
+        else
+            totalPriceView.setText("Total price: 0,00 €");
     }
 
     private void makePurchase(){
@@ -279,13 +276,13 @@ public class HomeActivity extends AppCompatActivity {
             /**
              * Calling JSON
              */
-            Call<ResponseId> call = api.addPurchase(user.getId());
+            Call<ResponsePurchase> call = api.addPurchase(user.getId());
 
 
-            call.enqueue(new Callback<ResponseId>() {
+            call.enqueue(new Callback<ResponsePurchase>() {
 
                 @Override
-                public void onResponse(Call<ResponseId> call, Response<ResponseId> response) {
+                public void onResponse(Call<ResponsePurchase> call, Response<ResponsePurchase> response) {
                     //Dismiss Dialog
                     dialog.dismiss();
 
@@ -296,8 +293,20 @@ public class HomeActivity extends AppCompatActivity {
                          * Got Successfully
                          */
                         int purchase_id = response.body().getId();
+                        String code = response.body().getValidation_token();
 
                         addPurchaseRow(purchase_id);
+
+                        productList.clear();
+                        adapter = new MyProductAdapter(HomeActivity.this, productList);
+                        listView.setAdapter(adapter);
+                        updateTotalPrice();
+
+                        Toast.makeText(act, "Purchase done.", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(act, QRCodeActivity.class);
+                        intent.putExtra("code", code);
+                        startActivity(intent);
 
 
                     } else {
@@ -306,7 +315,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseId> call, Throwable t) {
+                public void onFailure(Call<ResponsePurchase> call, Throwable t) {
                     Log.w("MyTag", "requestFailed", t);
                 }
             });
@@ -340,11 +349,6 @@ public class HomeActivity extends AppCompatActivity {
                             /**
                              * Got Successfully
                              */
-                            productList.clear();
-                            adapter = new MyProductAdapter(HomeActivity.this, productList);
-                            listView.setAdapter(adapter);
-                            updateTotalPrice();
-                            Toast.makeText(act, "Purchase done!", Toast.LENGTH_LONG).show();
 
                         } else {
                             Toast.makeText(act, "Purchase error.", Toast.LENGTH_LONG).show();
