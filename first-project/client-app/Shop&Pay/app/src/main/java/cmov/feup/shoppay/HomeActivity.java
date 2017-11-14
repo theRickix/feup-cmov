@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -270,7 +271,7 @@ public class HomeActivity extends AppCompatActivity {
             final ProgressDialog dialog;
             dialog = new ProgressDialog(HomeActivity.this);
             dialog.setTitle(getString(R.string.string_getting_json_title));
-            dialog.setMessage(getString(R.string.string_getting_json_message));
+            dialog.setMessage(getString(R.string.string_buying_json_message));
             dialog.show();
 
             ApiService api = RestClient.getApiService();
@@ -298,19 +299,7 @@ public class HomeActivity extends AppCompatActivity {
                         int purchase_id = response.body().getId();
                         String code = response.body().getValidation_token();
 
-                        addPurchaseRow(purchase_id);
-
-                        productList.clear();
-                        adapter = new MyProductAdapter(HomeActivity.this, productList);
-                        listView.setAdapter(adapter);
-                        updateTotalPrice();
-
-                        Toast.makeText(act, "Purchase done.", Toast.LENGTH_LONG).show();
-
-                        Intent intent = new Intent(act, QRCodeActivity.class);
-                        intent.putExtra("code", code);
-                        startActivity(intent);
-
+                        addPurchaseRow(purchase_id,code);
 
                     } else {
                         Toast.makeText(act, "Purchase error.", Toast.LENGTH_LONG).show();
@@ -329,7 +318,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void addPurchaseRow(int purchase_id){
+    private void addPurchaseRow(int purchase_id, String code){
 
 
             ApiService api = RestClient.getApiService();
@@ -364,6 +353,20 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
             }
+
+        productList.clear();
+        adapter = new MyProductAdapter(HomeActivity.this, productList);
+        listView.setAdapter(adapter);
+        updateTotalPrice();
+
+        Toast.makeText(act, "Purchase done.", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(act, QRCodeActivity.class);
+        intent.putExtra("code", code);
+        startActivity(intent);
+
+
+
 
     }
 

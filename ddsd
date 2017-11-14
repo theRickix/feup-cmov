@@ -1,0 +1,240 @@
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/AndroidManifest.xml b/first-project/client-app/Shop&Pay/app/src/main/AndroidManifest.xml[m
+[1mindex aa01f1a..fdd7f2a 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/AndroidManifest.xml[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/AndroidManifest.xml[m
+[36m@@ -49,8 +49,10 @@[m
+                 android:value=".LoginActivity" />[m
+             >[m
+         </activity>[m
+[31m-        <activity android:name=".HomeActivity"></activity>[m
+[31m-        <activity android:name=".PurchaseHistoryActivity"></activity>[m
+[32m+[m[32m        <activity android:name=".HomeActivity" />[m
+[32m+[m[32m        <activity[m
+[32m+[m[32m            android:name=".PurchaseHistoryActivity"[m
+[32m+[m[32m            android:configChanges="orientation" />[m
+         <activity[m
+             android:name=".RegisterActivity"[m
+             android:parentActivityName=".Choosin">[m
+[36m@@ -59,7 +61,7 @@[m
+                 android:value=".RegisterActivity" />[m
+             >[m
+         </activity>[m
+[31m-        <activity android:name=".QRCodeActivity"></activity>[m
+[32m+[m[32m        <activity android:name=".QRCodeActivity" />[m
+     </application>[m
+ [m
+ </manifest>[m
+\ No newline at end of file[m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/java/adapter/MyPurchaseAdapter.java b/first-project/client-app/Shop&Pay/app/src/main/java/adapter/MyPurchaseAdapter.java[m
+[1mindex 2c4765d..c91ce89 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/java/adapter/MyPurchaseAdapter.java[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/java/adapter/MyPurchaseAdapter.java[m
+[36m@@ -48,7 +48,7 @@[m [mpublic class MyPurchaseAdapter extends ArrayAdapter<Purchase> {[m
+         Purchase item = getItem(position);[m
+ [m
+         vh.textViewDateTime.setText(new SimpleDateFormat("yyyy:MM:dd @ HH:mm:ss").format(item.getPurchase_timestamp()));[m
+[31m-        vh.textViewPrice.setText("Price: "+item.getTotal_price());[m
+[32m+[m[32m        vh.textViewPrice.setText("Total Price: "+item.getTotal_price() +" €");[m
+ [m
+         return vh.rootView;[m
+     }[m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/java/api/RestClient.java b/first-project/client-app/Shop&Pay/app/src/main/java/api/RestClient.java[m
+[1mindex d0dbe1a..4b6bda9 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/java/api/RestClient.java[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/java/api/RestClient.java[m
+[36m@@ -8,7 +8,7 @@[m [mpublic class RestClient {[m
+     /********[m
+      * URLS[m
+      *******/[m
+[31m-    private static final String ROOT_URL = "http://172.30.2.143:3000/api/";[m
+[32m+[m[32m    private static final String ROOT_URL = "http://192.168.1.99:3000/api/";[m
+ [m
+     /**[m
+      * Get Retrofit Instance[m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/HomeActivity.java b/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/HomeActivity.java[m
+[1mindex 01f6e63..cd53e40 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/HomeActivity.java[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/HomeActivity.java[m
+[36m@@ -5,6 +5,7 @@[m [mimport android.app.AlertDialog;[m
+ import android.app.ProgressDialog;[m
+ import android.content.DialogInterface;[m
+ import android.content.Intent;[m
+[32m+[m[32mimport android.content.res.Configuration;[m
+ import android.support.design.widget.FloatingActionButton;[m
+ import android.support.v7.app.AppCompatActivity;[m
+ import android.os.Bundle;[m
+[36m@@ -270,7 +271,7 @@[m [mpublic class HomeActivity extends AppCompatActivity {[m
+             final ProgressDialog dialog;[m
+             dialog = new ProgressDialog(HomeActivity.this);[m
+             dialog.setTitle(getString(R.string.string_getting_json_title));[m
+[31m-            dialog.setMessage(getString(R.string.string_getting_json_message));[m
+[32m+[m[32m            dialog.setMessage(getString(R.string.string_buying_json_message));[m
+             dialog.show();[m
+ [m
+             ApiService api = RestClient.getApiService();[m
+[36m@@ -298,19 +299,7 @@[m [mpublic class HomeActivity extends AppCompatActivity {[m
+                         int purchase_id = response.body().getId();[m
+                         String code = response.body().getValidation_token();[m
+ [m
+[31m-                        addPurchaseRow(purchase_id);[m
+[31m-[m
+[31m-                        productList.clear();[m
+[31m-                        adapter = new MyProductAdapter(HomeActivity.this, productList);[m
+[31m-                        listView.setAdapter(adapter);[m
+[31m-                        updateTotalPrice();[m
+[31m-[m
+[31m-                        Toast.makeText(act, "Purchase done.", Toast.LENGTH_LONG).show();[m
+[31m-[m
+[31m-                        Intent intent = new Intent(act, QRCodeActivity.class);[m
+[31m-                        intent.putExtra("code", code);[m
+[31m-                        startActivity(intent);[m
+[31m-[m
+[32m+[m[32m                        addPurchaseRow(purchase_id,code);[m
+ [m
+                     } else {[m
+                         Toast.makeText(act, "Purchase error.", Toast.LENGTH_LONG).show();[m
+[36m@@ -329,7 +318,7 @@[m [mpublic class HomeActivity extends AppCompatActivity {[m
+         }[m
+     }[m
+ [m
+[31m-    private void addPurchaseRow(int purchase_id){[m
+[32m+[m[32m    private void addPurchaseRow(int purchase_id, String code){[m
+ [m
+ [m
+             ApiService api = RestClient.getApiService();[m
+[36m@@ -365,6 +354,20 @@[m [mpublic class HomeActivity extends AppCompatActivity {[m
+                 });[m
+             }[m
+ [m
+[32m+[m[32m        productList.clear();[m
+[32m+[m[32m        adapter = new MyProductAdapter(HomeActivity.this, productList);[m
+[32m+[m[32m        listView.setAdapter(adapter);[m
+[32m+[m[32m        updateTotalPrice();[m
+[32m+[m
+[32m+[m[32m        Toast.makeText(act, "Purchase done.", Toast.LENGTH_LONG).show();[m
+[32m+[m
+[32m+[m[32m        Intent intent = new Intent(act, QRCodeActivity.class);[m
+[32m+[m[32m        intent.putExtra("code", code);[m
+[32m+[m[32m        startActivity(intent);[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+     }[m
+ [m
+ [m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/LoginActivity.java b/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/LoginActivity.java[m
+[1mindex f70e56b..d5703af 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/LoginActivity.java[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/LoginActivity.java[m
+[36m@@ -160,7 +160,7 @@[m [mpublic class LoginActivity extends AppCompatActivity implements LoaderCallbacks<[m
+                             public void onResponse(Call<User> call, Response<User> response) {[m
+ [m
+                                 if(response.isSuccessful()) {[m
+[31m-                                    Intent intent = new Intent(act, PurchaseHistoryActivity.class);[m
+[32m+[m[32m                                    Intent intent = new Intent(act, HomeActivity.class);[m
+                                     intent.putExtra("user", user);[m
+                                     startActivity(intent);[m
+                                 }[m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/PurchaseHistoryActivity.java b/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/PurchaseHistoryActivity.java[m
+[1mindex 7b19c2b..e3ff373 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/PurchaseHistoryActivity.java[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/java/cmov/feup/shoppay/PurchaseHistoryActivity.java[m
+[36m@@ -54,7 +54,7 @@[m [mpublic class PurchaseHistoryActivity extends AppCompatActivity {[m
+     @Override[m
+     protected void onCreate(Bundle savedInstanceState) {[m
+         super.onCreate(savedInstanceState);[m
+[31m-        setContentView(R.layout.activity_home);[m
+[32m+[m[32m        setContentView(R.layout.activity_purchase_history);[m
+         act = this;[m
+ [m
+         Intent i = getIntent();[m
+[36m@@ -79,11 +79,10 @@[m [mpublic class PurchaseHistoryActivity extends AppCompatActivity {[m
+                                            int pos, long id) {[m
+                 // TODO Auto-generated method stub[m
+ [m
+[31m-                Log.v("long clicked","pos: " + pos);[m
+ [m
+[31m-[m
+[31m-                /*AlertDialog diaBox = deleteDialog(pos);[m
+[31m-                diaBox.show();*/[m
+[32m+[m[32m                Intent intent = new Intent(act, QRCodeActivity.class);[m
+[32m+[m[32m                intent.putExtra("code", purchaseList.get(pos).getValidation_token().toString());[m
+[32m+[m[32m                startActivity(intent);[m
+ [m
+                 return true;[m
+             }[m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_home.xml b/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_home.xml[m
+[1mindex 3f02c9c..38cb032 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_home.xml[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_home.xml[m
+[36m@@ -1,5 +1,5 @@[m
+ <?xml version="1.0" encoding="utf-8"?>[m
+[31m-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+     xmlns:app="http://schemas.android.com/apk/res-auto"[m
+     xmlns:tools="http://schemas.android.com/tools"[m
+     android:id="@+id/parentLayout"[m
+[36m@@ -41,4 +41,4 @@[m
+         app:layout_anchor="@+id/totalPrice"[m
+         app:layout_anchorGravity="top|right" />[m
+ [m
+[31m-</android.support.design.widget.CoordinatorLayout>[m
+\ No newline at end of file[m
+[32m+[m[32m</FrameLayout>[m
+\ No newline at end of file[m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_purchase_history.xml b/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_purchase_history.xml[m
+[1mindex 962b53f..71cf627 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_purchase_history.xml[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/res/layout/activity_purchase_history.xml[m
+[36m@@ -1,12 +1,12 @@[m
+ <?xml version="1.0" encoding="utf-8"?>[m
+[31m-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+     xmlns:app="http://schemas.android.com/apk/res-auto"[m
+     xmlns:tools="http://schemas.android.com/tools"[m
+[31m-    android:id="@+id/parentLayout"[m
+[32m+[m[32m    android:id="@+id/purchase_history"[m
+     android:layout_width="match_parent"[m
+     android:layout_height="match_parent"[m
+     android:fitsSystemWindows="true"[m
+[31m-    tools:context="cmov.feup.shoppay.HomeActivity">[m
+[32m+[m[32m    tools:context="cmov.feup.shoppay.PurchaseHistoryActivity">[m
+ [m
+     <android.support.design.widget.AppBarLayout[m
+         android:layout_width="match_parent"[m
+[36m@@ -19,4 +19,4 @@[m
+         android:layout_width="fill_parent"[m
+         android:layout_height="match_parent" />[m
+ [m
+[31m-</android.support.design.widget.CoordinatorLayout>[m
+\ No newline at end of file[m
+[32m+[m[32m</FrameLayout>[m
+\ No newline at end of file[m
+[1mdiff --git a/first-project/client-app/Shop&Pay/app/src/main/res/values/strings.xml b/first-project/client-app/Shop&Pay/app/src/main/res/values/strings.xml[m
+[1mindex d0b46e3..288fefb 100644[m
+[1m--- a/first-project/client-app/Shop&Pay/app/src/main/res/values/strings.xml[m
+[1m+++ b/first-project/client-app/Shop&Pay/app/src/main/res/values/strings.xml[m
+[36m@@ -4,6 +4,7 @@[m
+     <string name="string_some_thing_wrong">Something went wrong.</string>[m
+     <string name="string_getting_json_message">Gathering product information!.</string>[m
+     <string name="string_history_json_message">Gathering purchases information!.</string>[m
+[32m+[m[32m    <string name="string_buying_json_message">Buying your products!</string>[m
+     <string name="string_getting_json_title">Loading...</string>[m
+     <string name="string_click_to_load">Click on FloatingActionButton to Load JSON</string>[m
+     <string name="title_activity_login">Sign in</string>[m
+[1mdiff --git a/first-project/server/queries.js b/first-project/server/queries.js[m
+[1mindex 3f61407..690b172 100644[m
+[1m--- a/first-project/server/queries.js[m
+[1m+++ b/first-project/server/queries.js[m
+[36m@@ -233,7 +233,9 @@[m [mfunction insertPurchaseRow(req, res, next) {[m
+ [m
+ function getAllPurchases(req, res, next) {[m
+     var userID = parseInt(req.params.id);[m
+[31m-    db.any('select purchases.id as id, purchases.purchase_timestamp as purchase_timestamp, purchases.user_id as user_id, purchases.validation_token as validation_token from purchases WHERE purchases.user_id=$1', userID)[m
+[32m+[m[32m    db.any('select purchases.id as id, purchases.purchase_timestamp as purchase_timestamp, purchases.user_id as user_id, purchases.validation_token as validation_token, '+[m
+[32m+[m[32m      '(SELECT SUM(products.price) FROM products INNER JOIN purchase_rows ON '+[m
+[32m+[m[32m      'purchase_rows.product_id=products.id WHERE purchase_rows.purchase_id=purchases.id) as total_price from purchases WHERE purchases.user_id=$1', userID)[m
+       .then(function (data) {[m
+         res.status(200)[m
+           .json({[m

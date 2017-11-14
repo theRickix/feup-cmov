@@ -54,7 +54,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_purchase_history);
         act = this;
 
         Intent i = getIntent();
@@ -79,11 +79,10 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                                            int pos, long id) {
                 // TODO Auto-generated method stub
 
-                Log.v("long clicked","pos: " + pos);
 
-
-                /*AlertDialog diaBox = deleteDialog(pos);
-                diaBox.show();*/
+                Intent intent = new Intent(act, QRCodeActivity.class);
+                intent.putExtra("code", purchaseList.get(pos).getValidation_token().toString());
+                startActivity(intent);
 
                 return true;
             }

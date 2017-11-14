@@ -233,7 +233,9 @@ function insertPurchaseRow(req, res, next) {
 
 function getAllPurchases(req, res, next) {
     var userID = parseInt(req.params.id);
-    db.any('select purchases.id as id, purchases.purchase_timestamp as purchase_timestamp, purchases.user_id as user_id, purchases.validation_token as validation_token from purchases WHERE purchases.user_id=$1', userID)
+    db.any('select purchases.id as id, purchases.purchase_timestamp as purchase_timestamp, purchases.user_id as user_id, purchases.validation_token as validation_token, '+
+      '(SELECT SUM(products.price) FROM products INNER JOIN purchase_rows ON '+
+      'purchase_rows.product_id=products.id WHERE purchase_rows.purchase_id=purchases.id) as total_price from purchases WHERE purchases.user_id=$1', userID)
       .then(function (data) {
         res.status(200)
           .json({

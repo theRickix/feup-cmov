@@ -48,7 +48,7 @@ public class MyPurchaseAdapter extends ArrayAdapter<Purchase> {
         Purchase item = getItem(position);
 
         vh.textViewDateTime.setText(new SimpleDateFormat("yyyy:MM:dd @ HH:mm:ss").format(item.getPurchase_timestamp()));
-        vh.textViewPrice.setText("Price: "+item.getTotal_price());
+        vh.textViewPrice.setText("Total Price: "+item.getTotal_price() +" €");
 
         return vh.rootView;
     }
