@@ -248,7 +248,7 @@ function getAllPurchases(req, res, next) {
 }
 
 function getPurchaseFromToken(req,res,next){
-    var token=Uuid.fromString(req.params.token);
+    var token=req.params.token;
     db.any(' select * from purchase_rows Join Purchase on (purchase.token="$1" AND purchase.id = purchase_rows.purchase_id)',token)
     .then(function(data){
     res.status(200)

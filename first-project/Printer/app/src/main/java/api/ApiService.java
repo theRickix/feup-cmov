@@ -1,5 +1,7 @@
 package api;
 
+import java.util.UUID;
+
 import data.ProductList;
 import data.PurchaseList;
 import data.ResponsePurchase;
@@ -7,6 +9,7 @@ import data.User;
 import data.UserList;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -46,5 +49,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("purchase/row")
     Call<ResponseBody> addPurchaseRow(@Field("purchase_id") int purchase_id, @Field("product_id") int product_id);
+
+    @FormUrlEncoded
+    @POST("purchase/token")
+    Call<ResponseBody> getPurchase(@Field("token")UUID token);
 
 }
