@@ -49,8 +49,10 @@
                 android:value=".LoginActivity" />
             >
         </activity>
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".PurchaseHistoryActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity
+            android:name=".PurchaseHistoryActivity"
+            android:configChanges="orientation" />
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".Choosin">
@@ -59,7 +61,7 @@
                 android:value=".RegisterActivity" />
             >
         </activity>
-        <activity android:name=".QRCodeActivity"></activity>
+        <activity android:name=".QRCodeActivity" />
     </application>
 
 </manifest>

@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             public void onResponse(Call<User> call, Response<User> response) {
 
                                 if(response.isSuccessful()) {
-                                    Intent intent = new Intent(act, PurchaseHistoryActivity.class);
+                                    Intent intent = new Intent(act, HomeActivity.class);
                                     intent.putExtra("user", user);
                                     startActivity(intent);
                                 }
