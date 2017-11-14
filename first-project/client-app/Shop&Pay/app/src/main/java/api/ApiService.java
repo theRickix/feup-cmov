@@ -1,6 +1,7 @@
 package api;
 
 import data.ProductList;
+import data.PurchaseList;
 import data.ResponsePurchase;
 import data.User;
 import data.UserList;
@@ -18,6 +19,9 @@ public interface ApiService {
 
     @GET("products")
     Call<ProductList> getProducts();
+
+    @GET("purchase/id={id}")
+    Call<PurchaseList> getPurchases(@Path("id") int id);
 
     @GET("products/id={id}")
     Call<ProductList> getProductById(@Path("id") int id);

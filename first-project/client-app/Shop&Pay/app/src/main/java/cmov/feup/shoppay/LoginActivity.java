@@ -44,6 +44,7 @@ import java.util.List;
 import api.ApiService;
 import api.RestClient;
 import data.CardType;
+import data.Purchase;
 import data.User;
 import data.UserList;
 import retrofit2.Call;
@@ -159,7 +160,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             public void onResponse(Call<User> call, Response<User> response) {
 
                                 if(response.isSuccessful()) {
-                                    Intent intent = new Intent(act, HomeActivity.class);
+                                    Intent intent = new Intent(act, PurchaseHistoryActivity.class);
                                     intent.putExtra("user", user);
                                     startActivity(intent);
                                 }

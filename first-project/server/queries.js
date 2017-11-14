@@ -22,6 +22,7 @@ module.exports = {
     register:register,
     login:login,
     updateUserPublicKey:  updateUserPublicKey,
+    getAllPurchases: getAllPurchases,
     insertPurchase: insertPurchase,
     insertPurchaseRow: insertPurchaseRow
   };
@@ -199,7 +200,7 @@ function updateUserPublicKey(req, res, next) {
 }
 
 function insertPurchase(req, res, next) {
-  db.one('INSERT INTO purchases(purchase_date,purchase_time,user_id,validation_token) VALUES (CURRENT_DATE,CURRENT_TIME,$1,md5(random()::text || clock_timestamp()::text)::uuid) RETURNING purchases.id, purchases.validation_token',parseInt(req.body.user_id))
+  db.one('INSERT INTO purchases(purchase_timestamp,user_id,validation_token) VALUES (CURRENT_TIMESTAMP,$1,md5(random()::text || clock_timestamp()::text)::uuid) RETURNING purchases.id, purchases.validation_token',parseInt(req.body.user_id))
    .then(function (data) {
       res.status(200)
         .json({
@@ -221,6 +222,23 @@ function insertPurchaseRow(req, res, next) {
           .json({
             status: 'success',
             message: 'Inserted purchase_row'
+          });
+      })
+      .catch(function (err) {
+        return next(err);
+        console.log(err);
+      });
+}
+
+function getAllPurchases(req, res, next) {
+    var userID = parseInt(req.params.id);
+    db.any('select purchases.id as id, purchases.purchase_timestamp as purchase_timestamp, purchases.user_id as user_id, purchases.validation_token as validation_token from purchases WHERE purchases.user_id=$1', userID)
+      .then(function (data) {
+        res.status(200)
+          .json({
+            status: 'success',
+            data: data,
+            message: 'Retrieved all purchases from user'
           });
       })
       .catch(function (err) {

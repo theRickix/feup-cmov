@@ -29,4 +29,8 @@ public class PurchaseList {
     public void addPurchase(Purchase purchase) {
         this.purchases.add(purchase);
     }
+
+    public ArrayList<Purchase> getPurchases() {
+        return purchases;
+    }
 }
