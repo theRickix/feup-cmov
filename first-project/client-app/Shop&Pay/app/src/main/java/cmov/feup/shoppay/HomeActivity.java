@@ -9,8 +9,11 @@ import android.content.res.Configuration;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,6 +22,14 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.special.ResideMenu.ResideMenu;
+import com.special.ResideMenu.ResideMenuItem;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -50,6 +61,10 @@ public class HomeActivity extends AppCompatActivity {
     private Activity act;
     private TextView totalPriceView;
     private User user;
+    private ResideMenu resideMenu;
+    private ResideMenuItem itemCart;
+    private ResideMenuItem itemHistory;
+    private Toolbar myToolbar;
 
 
     @Override
@@ -61,7 +76,11 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = getIntent();
         user = (User)i.getSerializableExtra("user");
 
-        Toast.makeText(act, "Logged in as "+user.getName(), Toast.LENGTH_LONG).show();
+
+       myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        createMenu();
 
         /**
          * Array List for Binding Data from JSON to this List
@@ -368,6 +387,36 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+    }
+
+    protected void createMenu() {
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Cart");
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("History");
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .addDrawerItems(
+                        item1,
+                        new DividerDrawerItem(),
+                        item2).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int pos, IDrawerItem drawerItem) {
+                        if(pos==1) {
+                            Intent intent = new Intent(act, HomeActivity.class);
+                            intent.putExtra("user", user);
+                            startActivity(intent);
+                        }
+                        else if(pos==2) {
+                            Intent intent = new Intent(act, PurchaseHistoryActivity.class);
+                            intent.putExtra("user", user);
+                            startActivity(intent);
+                        }
+
+                        return true;
+                    }
+                })
+                .build();
     }
 
 
