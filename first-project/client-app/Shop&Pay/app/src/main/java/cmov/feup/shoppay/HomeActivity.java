@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -388,7 +390,7 @@ public class HomeActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         updateTotalPrice();
 
-        Toast.makeText(act, "Presult.setSelection(1);urchase done.", Toast.LENGTH_LONG).show();
+        Toast.makeText(act, "Purchase done.", Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(act, QRCodeActivity.class);
         intent.putExtra("code", code);
@@ -418,6 +420,7 @@ public class HomeActivity extends AppCompatActivity {
                             if(productList != null)
                                 intent.putExtra("productList",productList);
                             startActivity(intent);
+                            finish();
                         }
                         else if(pos==2) {
                             Intent intent = new Intent(act, PurchaseHistoryActivity.class);
@@ -425,12 +428,32 @@ public class HomeActivity extends AppCompatActivity {
                             if(productList != null)
                                 intent.putExtra("productList",productList);
                             startActivity(intent);
+                            finish();
                         }
 
                         return true;
                     }
                 })
                 .build();
+    }
+
+    // create an action bar button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.buy_action) {
+            if(productList.size() > 0)
+                makePurchase();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

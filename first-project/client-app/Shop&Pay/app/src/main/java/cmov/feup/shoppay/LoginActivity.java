@@ -32,10 +32,13 @@ import android.widget.Toast;
 import com.scottyab.aescrypt.AESCrypt;
 import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -84,6 +87,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setSupportActionBar(myToolbar);
 
         act = this;
+
+        automaticLogin();
         // Set up the login form.passwordView = (EditText) findViewById(R.id.password);
         populateAutoComplete();
         emailView = (EditText) findViewById(R.id.email);
@@ -114,6 +119,65 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    private void automaticLogin() {
+        String s=loadFile();
+        if(s!=null) {
+
+            String read;
+            try {
+                final User[] user = new User[1];
+                read=getStringFromFile("cache.txt");
+                ApiService api = RestClient.getApiService();
+                Call<UserList> call = api.login(read.split(" ")[0], AESCrypt.encrypt(read.split(" ")[1], "gjNEd34DK"));
+                call.enqueue(new Callback<UserList>() {
+
+                    public void onResponse(Call<UserList> call, Response<UserList> response) {
+
+                        if (response.isSuccessful()) {
+                            user[0] = new User(response.body().getUsers().get(0));
+                            Log.i("Teste", user[0].toString());
+
+                            ApiService api = RestClient.getApiService();
+                            Call<User> call2 = api.updateUserPublicKey(user[0].getId(), user[0]);
+                            call2.enqueue(new Callback<User>() {
+
+                                public void onResponse(Call<User> call, Response<User> response) {
+
+                                    if(response.isSuccessful()) {
+                                        Intent intent = new Intent(act, HomeActivity.class);
+                                        intent.putExtra("user", user[0]);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<User> call, Throwable t) {
+                                    Toast.makeText(act, "Login failed!", Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        }
+                        else
+                            Toast.makeText(act, "Login failed!", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<UserList> call, Throwable t) {
+
+                        Toast.makeText(act, "Login failed!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     private void populateAutoComplete() {
@@ -179,6 +243,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     Intent intent = new Intent(act, HomeActivity.class);
                                     intent.putExtra("user", user);
                                     startActivity(intent);
+                                    finish();
                                 }
                             }
 
@@ -298,6 +363,46 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         nameView.setAdapter(adapter);
     }
 */
+
+    public String loadFile(){
+        String FILENAME = "metadata";
+        FileInputStream fin=null;
+        try{
+            fin=openFileInput(FILENAME);
+        }catch (FileNotFoundException e){
+
+            return null;
+        }
+
+        byte []a=new byte[368];
+        try {
+            fin.read(a);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return a.toString();
+
+    }
+    //reading from text, functions offered by android are making my brain burn ahead of time -jp
+    public static String convertStreamToString(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        reader.close();
+        return sb.toString();
+    }
+
+    public static String getStringFromFile (String filename) throws Exception {
+        //File fl = new File(filePath);
+        FileInputStream fin = new FileInputStream(filename);
+        String ret = convertStreamToString(fin);
+        //Make sure you close all streams.
+        fin.close();
+        return ret;
+    }
 
     private interface ProfileQuery {
         String[] PROJECTION = {

@@ -415,6 +415,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                 Intent intent = new Intent(act, HomeActivity.class);
                 intent.putExtra("user", mUser);
                 startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(act, "Registration error.", Toast.LENGTH_LONG).show();
             }

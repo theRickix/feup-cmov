@@ -199,6 +199,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                             if(productList != null)
                                 intent.putExtra("productList",productList);
                             startActivity(intent);
+                            finish();
                         }
                         else if(pos==1) {
                             Intent intent = new Intent(act, PurchaseHistoryActivity.class);
@@ -206,6 +207,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                             if(productList != null)
                                 intent.putExtra("productList",productList);
                             startActivity(intent);
+                            finish();
                         }
 
                         return true;
