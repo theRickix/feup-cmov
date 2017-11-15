@@ -409,6 +409,9 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
 
             if (success) {
                 finish();
+                //save private informations for quick launch 
+                saveMetaFile(mUser);
+                saveCache(mUser);
                 Intent intent = new Intent(act, HomeActivity.class);
                 intent.putExtra("user", mUser);
                 startActivity(intent);
@@ -442,6 +445,23 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         return a.toString();
 
     }
+    public void saveCache(User user){
+        String FILENAME="cache.txt";
+        FileOutputStream fos=null;
+        try {
+            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+            fos.write((user.getEmail()+ " "+ user.getPassword()).getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
     public void saveMetaFile(User user){
         String FILENAME = "metadata";
 
