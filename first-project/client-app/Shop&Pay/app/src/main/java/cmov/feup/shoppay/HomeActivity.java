@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
         user = (User)i.getSerializableExtra("user");
 
 
-       myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         createMenu();
@@ -85,11 +85,20 @@ public class HomeActivity extends AppCompatActivity {
         /**
          * Array List for Binding Data from JSON to this List
          */
-        productList = new ArrayList<>();
+        if(i.getSerializableExtra("productList") != null) {
+            productList = (ArrayList<Product>) i.getSerializableExtra("productList");
+            adapter = new MyProductAdapter(HomeActivity.this, productList);
+            listView.setAdapter(adapter);
+        }
+        else
+            productList = new ArrayList<>();
+
         parentView = findViewById(R.id.parentLayout);
 
         totalPriceView = (TextView) findViewById(R.id.totalPrice);
         totalPriceView.setText("Total price: 0.00 €");
+
+
         /**
          * Getting List
          */
@@ -128,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button button = (Button) findViewById(R.id.button_send);
+        /*Button button = (Button) findViewById(R.id.button_send);
         assert button != null;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
                 if(productList.size() > 0)
                     makePurchase();
             }
-        });
+        });*/
 
 
     }
@@ -378,7 +387,7 @@ public class HomeActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         updateTotalPrice();
 
-        Toast.makeText(act, "Purchase done.", Toast.LENGTH_LONG).show();
+        Toast.makeText(act, "Presult.setSelection(1);urchase done.", Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(act, QRCodeActivity.class);
         intent.putExtra("code", code);
@@ -405,11 +414,13 @@ public class HomeActivity extends AppCompatActivity {
                         if(pos==1) {
                             Intent intent = new Intent(act, HomeActivity.class);
                             intent.putExtra("user", user);
+                            intent.putExtra("productList",productList);
                             startActivity(intent);
                         }
                         else if(pos==2) {
                             Intent intent = new Intent(act, PurchaseHistoryActivity.class);
                             intent.putExtra("user", user);
+                            intent.putExtra("productList",productList);
                             startActivity(intent);
                         }
 

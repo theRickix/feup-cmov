@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,12 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -49,7 +56,8 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
     private MyPurchaseAdapter adapter;
     private Activity act;
     private User user;
-
+    private ArrayList<Product> productList;
+    private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +67,17 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         user = (User)i.getSerializableExtra("user");
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        createMenu();
+
+        /**
+         * Array List for Binding Data from JSON to this List
+         */
+        if(i.getSerializableExtra("productList") != null)
+            productList = (ArrayList<Product>) i.getSerializableExtra("productList");
 
         /**
          * Array List for Binding Data from JSON to this List
@@ -157,5 +176,38 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
             //Snackbar.make(parentView, R.string.string_internet_connection_not_available, Snackbar.LENGTH_LONG).show();
         }
     }
+
+    protected void createMenu() {
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(2).withName("Cart");
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(1).withName("History");
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .addDrawerItems(
+                        item2,
+                        new DividerDrawerItem(),
+                        item1).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int pos, IDrawerItem drawerItem) {
+                        if(pos==2) {
+                            Intent intent = new Intent(act, HomeActivity.class);
+                            intent.putExtra("user", user);
+                            intent.putExtra("productList",productList);
+                            startActivity(intent);
+                        }
+                        else if(pos==1) {
+                            Intent intent = new Intent(act, PurchaseHistoryActivity.class);
+                            intent.putExtra("user", user);
+                            intent.putExtra("productList",productList);
+                            startActivity(intent);
+                        }
+
+                        return true;
+                    }
+                })
+                .build();
+    }
+
 
 }

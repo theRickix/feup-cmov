@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -83,12 +84,17 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     private Activity act;
 
     private int expiryMonth,expiryYear;
+    private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         act = this;
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         // Set up the login form.
         nameView = (EditText) findViewById(R.id.name);
         passwordView = (EditText) findViewById(R.id.password);
