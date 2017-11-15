@@ -271,7 +271,7 @@ function getUserOfPurchase(req,res,next){
 
 function getPurchaseFromToken(req,res,next){
     var token=req.params.token;
-    db.any(' select products.id,products.model,products.barcode,products.maker_id,products.category_id,products.price from products Join purchase_rows on products.id=purchase_rows.product_id Join purchases on (purchases.id = purchase_rows.purchase_id AND purchases.validation_token=$1)',token)
+    db.any(' select products.id,products.model,products.barcode,makers.name as maker,categories.name as category,products.price from products Join categories on products.maker_id=categories.id Join makers on products.maker_id=makers.id Join purchase_rows on products.id=purchase_rows.product_id Join purchases on (purchases.id = purchase_rows.purchase_id AND purchases.validation_token=$1)',token)
     .then(function(data){
     res.status(200)
     .json({

@@ -34,7 +34,7 @@ public class PrintActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Button QRButton, barButton;
-        api = RestClient.getApiService();
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_print);
@@ -90,37 +90,12 @@ public class PrintActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 String contents = data.getStringExtra("SCAN_RESULT");
-                String format = data.getStringExtra("SCAN_RESULT_FORMAT");
-                final User[] us = new User[1];
-                //message.setText("Format: " + format + "\nMessage: " + contents);
-                Call<UserList> c1=api.getUserFromPurchase(UUID.fromString(contents));
-                c1.enqueue(new Callback<UserList>() {
-                    @Override
-                    public void onResponse(Call<UserList> call, Response<UserList> response) {
-                        us[0] =response.body().getUsers().get(0);
-                        message.setText(response.body().getUsers().get(0).getName());
-                    }
-
-                    @Override
-                    public void onFailure(Call<UserList> call, Throwable t) {
-                        message.setText("failed");
-                    }
-                });
-                Call<ProductList> call=api.getPurchase(UUID.fromString(contents));
-                call.enqueue(new Callback<ProductList>() {
-
-                    @Override
-                    public void onResponse(Call<ProductList> call, Response<ProductList> response) {
-                   // message.setText(message.getText()+" " +response.body().getProducts().get(0));
+                //String format = data.getStringExtra("SCAN_RESULT_FORMAT");
 
 
-                    }
-
-                    @Override
-                    public void onFailure(Call<ProductList> call, Throwable t) {
-                    message.setText("failed");
-                    }
-                });
+                Intent intent = new Intent(this, Show_purchase.class);
+                intent.putExtra("contents",contents);
+                startActivity(intent);
             }
         }
     }
