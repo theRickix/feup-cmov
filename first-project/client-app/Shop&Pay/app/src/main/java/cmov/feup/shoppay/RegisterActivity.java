@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -33,6 +34,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.scottyab.aescrypt.AESCrypt;
 import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
@@ -410,8 +412,15 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             if (success) {
                 finish();
                 //save private informations for quick launch 
-                saveMetaFile(mUser);
-                saveCache(mUser);
+                //saveMetaFile(mUser);
+                //saveCache(mUser);
+                SharedPreferences mPrefs = getSharedPreferences("Login",MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(mUser);
+                prefsEditor.putString("UserDetails", json);
+                prefsEditor.apply();
+
                 Intent intent = new Intent(act, HomeActivity.class);
                 intent.putExtra("user", mUser);
                 startActivity(intent);

@@ -5,10 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -29,6 +31,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.scottyab.aescrypt.AESCrypt;
 import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
@@ -83,12 +86,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        SharedPreferences mPrefs = getSharedPreferences("Login",MODE_PRIVATE);
+
+        if (mPrefs.contains("UserDetails")) {
+
+            try {
+
+                automaticLogin(mPrefs);
+            } catch (GeneralSecurityException e) {
+                e.printStackTrace();
+            }
+        }
+
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         act = this;
-
-        automaticLogin();
         // Set up the login form.passwordView = (EditText) findViewById(R.id.password);
         populateAutoComplete();
         emailView = (EditText) findViewById(R.id.email);
@@ -119,9 +132,54 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
     }
 
-    private void automaticLogin() {
+    private void automaticLogin(SharedPreferences mPrefs) throws GeneralSecurityException {
+
+        Gson gson = new Gson();
+        String json = mPrefs.getString("UserDetails", "");
+        User user1 = gson.fromJson(json, User.class);
+
+        final ProgressDialog dialog;
+        /**
+         * Progress Dialog for User Interaction
+         */
+        dialog = new ProgressDialog(LoginActivity.this);
+        dialog.setTitle(getString(R.string.string_getting_json_title));
+        dialog.setMessage(getString(R.string.string_logging_json_message));
+        dialog.show();
+
+        ApiService api = RestClient.getApiService();
+        Call<UserList> call = api.login(user1.getEmail(), user1.getPassword());
+        call.enqueue(new Callback<UserList>() {
+
+            public void onResponse(Call<UserList> call, Response<UserList> response) {
+
+                if (response.isSuccessful()) {
+                    user = new User(response.body().getUsers().get(0));
+                    Log.i("Teste", user.toString());
+
+                    Intent intent = new Intent(act, HomeActivity.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
+                    finish();
+
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(Call<UserList> call, Throwable t) {
+
+                //Toast.makeText(act, "Login failed!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    /*private void automaticLogin() {
         String s=loadFile();
         if(s!=null) {
 
@@ -178,7 +236,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         }
-    }
+    }*/
 
     private void populateAutoComplete() {
         getLoaderManager().initLoader(0, null, this);

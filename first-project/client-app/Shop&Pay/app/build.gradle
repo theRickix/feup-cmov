@@ -43,5 +43,6 @@ dependencies {
     compile('com.mikepenz:materialdrawer:6.0.1@aar') {
         transitive = true
     }
+    compile 'com.google.code.gson:gson:2.7'
     testCompile 'junit:junit:4.12'
 }
