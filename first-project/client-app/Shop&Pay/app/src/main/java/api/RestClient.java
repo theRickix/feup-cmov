@@ -8,7 +8,7 @@ public class RestClient {
     /********
      * URLS
      *******/
-    private static final String ROOT_URL = "http://192.168.2.16:3000/api/";
+    private static final String ROOT_URL = "http://shop-and-pay.herokuapp.com/api/";
 
     /**
      * Get Retrofit Instance

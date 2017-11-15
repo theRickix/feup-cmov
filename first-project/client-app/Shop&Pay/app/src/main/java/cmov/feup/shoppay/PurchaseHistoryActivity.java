@@ -80,7 +80,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         if(i.getSerializableExtra("productList") != null)
             productList = (ArrayList<Product>) i.getSerializableExtra("productList");
 
-        Log.v("DSDSDS",productList.get(0).toString());
+//        Log.v("DSDSDS",productList.get(0).toString());
 
         /**
          * Array List for Binding Data from JSON to this List
@@ -156,9 +156,13 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                          * Got Successfully
                          */
 
-                        Log.v("TESTE   ",response.body().getPurchases().get(0).toString());
+                        //Log.v("TESTE   ",response.body().getPurchases().get(0).toString());
 
-                        purchaseList.add(response.body().getPurchases().get(0));
+                        if(response.body().getPurchases().size() > 0)
+                            purchaseList = response.body().getPurchases();
+                        else
+                            Toast.makeText(act, "No purchases!", Toast.LENGTH_LONG).show();
+
                         adapter = new MyPurchaseAdapter(PurchaseHistoryActivity.this, purchaseList);
                         listView.setAdapter(adapter);
 

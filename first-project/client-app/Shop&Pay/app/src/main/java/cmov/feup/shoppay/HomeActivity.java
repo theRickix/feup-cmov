@@ -118,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
          */
         if(i.getSerializableExtra("productList") != null) {
             productList = (ArrayList<Product>) i.getSerializableExtra("productList");
-            Log.v("sds",productList.get(0).toString());
+//            Log.v("sds",productList.get(0).toString());
             adapter = new MyProductAdapter(HomeActivity.this, productList);
             listView.setAdapter(adapter);
         }
@@ -215,15 +215,9 @@ public class HomeActivity extends AppCompatActivity {
                         /**
                          * Got Successfully
                          */
-                        Log.i("TESTE",response.body().getProducts().get(0).getCategory());
+                       // Log.i("TESTE",response.body().getProducts().get(0).getCategory());
 
-                        boolean found = false;
-                        for(Product p: productList) {
-                            if(barcode.equals(p.getBarcode()))
-                                found = true;
-                        }
-
-                        if(!found) {
+                        if(response.body().getProducts().size() > 0) {
                             productList.add(response.body().getProducts().get(0));
                             adapter = new MyProductAdapter(HomeActivity.this, productList);
                             listView.setAdapter(adapter);
@@ -231,7 +225,7 @@ public class HomeActivity extends AppCompatActivity {
 
                         }
                         else {
-                            Toast.makeText(act, "Product already in cart!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(act, "Product not found!!", Toast.LENGTH_LONG).show();
                         }
 
                     } else {
@@ -452,6 +446,9 @@ public class HomeActivity extends AppCompatActivity {
         if (id == R.id.buy_action) {
             if(productList.size() > 0)
                 makePurchase();
+            else
+                Toast.makeText(act, "No products on cart!", Toast.LENGTH_LONG).show();
+
         }
         return super.onOptionsItemSelected(item);
     }
