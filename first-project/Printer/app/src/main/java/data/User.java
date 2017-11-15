@@ -185,7 +185,14 @@ public class User implements Serializable {
             e.printStackTrace();
         }
     }
-
+    //usei este para receber a info na purchase pois os outros são numeros mais privados
+    public User(String name,String email,String address,String postal_code,String fiscal){
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.postal_code = postal_code;
+        this.fiscal = fiscal;
+    }
     public User(String name, String email, String password, String address, String postal_code, String fiscal, CardType cc_type, String cc_number, int cc_expiry_month, int cc_expiry_year) {
 
         this.name = name;

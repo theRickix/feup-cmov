@@ -51,8 +51,11 @@ public interface ApiService {
     @POST("purchase/row")
     Call<ResponseBody> addPurchaseRow(@Field("purchase_id") int purchase_id, @Field("product_id") int product_id);
 
-    @FormUrlEncoded
-    @POST("purchase/token")
-    Call<PurchaseList> getPurchase(@Field("token")UUID token);
+    //passar a post, n consegui na altura e decidi avançar
+    @GET("purchase/token={token}")
+    Call<ProductList> getPurchase(@Path("token") UUID token);
+
+    @GET("purchase/user/token={token}")
+    Call<UserList> getUserFromPurchase(@Path("token") UUID token);
 
 }

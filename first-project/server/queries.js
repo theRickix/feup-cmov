@@ -6,7 +6,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://shopping:shopping@localhost:5432/shopping';
+var connectionString = 'postgres://postgres:shopping@localhost:5432/shopping';
 var db = pgp(connectionString);
 
 // add query functions
@@ -25,7 +25,8 @@ module.exports = {
     getAllPurchases: getAllPurchases,
     insertPurchase: insertPurchase,
     insertPurchaseRow: insertPurchaseRow,
-    getPurchaseFromToken: getPurchaseFromToken
+    getPurchaseFromToken: getPurchaseFromToken,
+    getUserOfPurchase:getUserOfPurchase
   };
 
 
@@ -249,10 +250,28 @@ function getAllPurchases(req, res, next) {
         console.log(err);
       });
 }
+function getUserOfPurchase(req,res,next){
+    var token=req.params.token;
+    db.one('select users.name,users.email,users.address,users.postal_code,users.fiscal from users join purchases on (users.id=purchases.user_id and validation_token=$1)',token)
+     .then(function(data){
+    res.status(200)
+    .json({
+        status:'success',
+        data:[data],
+        message:'Retrieved your purchases belonging to this token'
+    });
+        console.log(data);
+})
+      .catch(function(err){
+        return next(err);
+        console.log(err);
+    });    
+    
+}
 
 function getPurchaseFromToken(req,res,next){
     var token=req.params.token;
-    db.any(' select * from purchase_rows Join Purchase on (purchase.token="$1" AND purchase.id = purchase_rows.purchase_id)',token)
+    db.any(' select products.id,products.model,products.barcode,products.maker_id,products.category_id,products.price from products Join purchase_rows on products.id=purchase_rows.product_id Join purchases on (purchases.id = purchase_rows.purchase_id AND purchases.validation_token=$1)',token)
     .then(function(data){
     res.status(200)
     .json({
@@ -260,6 +279,7 @@ function getPurchaseFromToken(req,res,next){
         data:data,
         message:'Retrieved your purchases belonging to this token'
     });
+        console.log(data);
 })
       .catch(function(err){
         return next(err);

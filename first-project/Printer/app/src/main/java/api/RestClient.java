@@ -8,7 +8,7 @@ public class RestClient {
     /********
      * URLS
      *******/
-    private static final String ROOT_URL = "http://172.30.2.143:3000/api/";
+    private static final String ROOT_URL = "http://192.168.1.33:3000/api/";
 
     /**
      * Get Retrofit Instance

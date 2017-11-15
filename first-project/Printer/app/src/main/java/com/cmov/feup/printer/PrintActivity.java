@@ -17,9 +17,12 @@ import java.util.UUID;
 
 import api.ApiService;
 import api.RestClient;
+import data.Product;
 import data.ProductList;
 import data.Purchase;
 import data.PurchaseList;
+import data.User;
+import data.UserList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,25 +86,39 @@ public class PrintActivity extends AppCompatActivity {
         return downloadDialog.show();
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 String contents = data.getStringExtra("SCAN_RESULT");
                 String format = data.getStringExtra("SCAN_RESULT_FORMAT");
-
+                final User[] us = new User[1];
                 //message.setText("Format: " + format + "\nMessage: " + contents);
-
-                Call<PurchaseList> call=api.getPurchase(UUID.fromString(contents));
-                call.enqueue(new Callback<PurchaseList>() {
+                Call<UserList> c1=api.getUserFromPurchase(UUID.fromString(contents));
+                c1.enqueue(new Callback<UserList>() {
+                    @Override
+                    public void onResponse(Call<UserList> call, Response<UserList> response) {
+                        us[0] =response.body().getUsers().get(0);
+                        message.setText(response.body().getUsers().get(0).getName());
+                    }
 
                     @Override
-                    public void onResponse(Call<PurchaseList> call, Response<PurchaseList> response) {
+                    public void onFailure(Call<UserList> call, Throwable t) {
+                        message.setText("failed");
+                    }
+                });
+                Call<ProductList> call=api.getPurchase(UUID.fromString(contents));
+                call.enqueue(new Callback<ProductList>() {
+
+                    @Override
+                    public void onResponse(Call<ProductList> call, Response<ProductList> response) {
+                   // message.setText(message.getText()+" " +response.body().getProducts().get(0));
+
 
                     }
 
                     @Override
-                    public void onFailure(Call<PurchaseList> call, Throwable t) {
-
+                    public void onFailure(Call<ProductList> call, Throwable t) {
+                    message.setText("failed");
                     }
                 });
             }
