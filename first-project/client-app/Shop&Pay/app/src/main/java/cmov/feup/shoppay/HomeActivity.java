@@ -82,17 +82,6 @@ public class HomeActivity extends AppCompatActivity {
 
         createMenu();
 
-        /**
-         * Array List for Binding Data from JSON to this List
-         */
-        if(i.getSerializableExtra("productList") != null) {
-            productList = (ArrayList<Product>) i.getSerializableExtra("productList");
-            adapter = new MyProductAdapter(HomeActivity.this, productList);
-            listView.setAdapter(adapter);
-        }
-        else
-            productList = new ArrayList<>();
-
         parentView = findViewById(R.id.parentLayout);
 
         totalPriceView = (TextView) findViewById(R.id.totalPrice);
@@ -119,6 +108,18 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        productList = new ArrayList<>();
+
+        /**
+         * Array List for Binding Data from JSON to this List
+         */
+        if(i.getSerializableExtra("productList") != null) {
+            productList = (ArrayList<Product>) i.getSerializableExtra("productList");
+            Log.v("sds",productList.get(0).toString());
+            adapter = new MyProductAdapter(HomeActivity.this, productList);
+            listView.setAdapter(adapter);
+        }
 
         //OPEN BARCODE SCANNER
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -414,13 +415,15 @@ public class HomeActivity extends AppCompatActivity {
                         if(pos==1) {
                             Intent intent = new Intent(act, HomeActivity.class);
                             intent.putExtra("user", user);
-                            intent.putExtra("productList",productList);
+                            if(productList != null)
+                                intent.putExtra("productList",productList);
                             startActivity(intent);
                         }
                         else if(pos==2) {
                             Intent intent = new Intent(act, PurchaseHistoryActivity.class);
                             intent.putExtra("user", user);
-                            intent.putExtra("productList",productList);
+                            if(productList != null)
+                                intent.putExtra("productList",productList);
                             startActivity(intent);
                         }
 

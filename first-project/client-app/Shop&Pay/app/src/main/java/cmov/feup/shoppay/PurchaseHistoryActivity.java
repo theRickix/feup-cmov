@@ -73,11 +73,14 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
         createMenu();
 
+        productList = new ArrayList<>();
         /**
          * Array List for Binding Data from JSON to this List
          */
         if(i.getSerializableExtra("productList") != null)
             productList = (ArrayList<Product>) i.getSerializableExtra("productList");
+
+        Log.v("DSDSDS",productList.get(0).toString());
 
         /**
          * Array List for Binding Data from JSON to this List
@@ -193,13 +196,15 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                         if(pos==2) {
                             Intent intent = new Intent(act, HomeActivity.class);
                             intent.putExtra("user", user);
-                            intent.putExtra("productList",productList);
+                            if(productList != null)
+                                intent.putExtra("productList",productList);
                             startActivity(intent);
                         }
                         else if(pos==1) {
                             Intent intent = new Intent(act, PurchaseHistoryActivity.class);
                             intent.putExtra("user", user);
-                            intent.putExtra("productList",productList);
+                            if(productList != null)
+                                intent.putExtra("productList",productList);
                             startActivity(intent);
                         }
 
