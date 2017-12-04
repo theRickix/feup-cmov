@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
-  <Jars></Jars>
+  <Jars>C:\Users\JP\Desktop\Aulas\CMOV\feup-cmov\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\FormsViewGroup\library_project_imports\formsviewgroup.jar</Jars>
   <ResolvedResourceDirectories>
-    <ResolvedResourceDirectory>C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform.Android\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\JP\Desktop\Aulas\CMOV\feup-cmov\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform.Android\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\JP\Desktop\Aulas\CMOV\feup-cmov\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform\library_project_imports\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
     <ResolvedAssetDirectory>obj\Debug\__library_projects__\Xamarin.Forms.Platform.Android\library_project_imports\assets</ResolvedAssetDirectory>
@@ -11,7 +11,7 @@
   </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>
-    <ResolvedResourceDirectoryStamp>C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform.Android.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\JP\Desktop\Aulas\CMOV\feup-cmov\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform.Android.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\JP\Desktop\Aulas\CMOV\feup-cmov\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\__library_projects__\Xamarin.Forms.Platform.stamp</ResolvedResourceDirectoryStamp>
   </ResolvedResourceDirectoryStamps>
 </Paths>

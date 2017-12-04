@@ -9,26 +9,23 @@ namespace WeatherApp
 {
     public partial class App : Application
     {
+        static WeatherDatabase database;
         public App()
         {
             InitializeComponent();
 
             MainPage = new WeatherApp.MainPage();
         }
-
-        protected override void OnStart()
+        public static WeatherDatabase Database
         {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            get
+            {
+                if (database == null)
+                {
+                    database = new WeatherDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return database;
+            }
         }
     }
 }

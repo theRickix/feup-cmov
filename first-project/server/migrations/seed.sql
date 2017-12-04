@@ -14,4 +14,4 @@ INSERT INTO
 	products(model, barcode, maker_id, category_id, price)
  VALUES 
  	('Zenfone 3','638586874977', 6, 1, 259.99),
- 	('iPhone 8','190198453655', 3, 1, 869.99);
+ 	('iPhone 8','d', 3, 1, 869.99);

@@ -3,7 +3,9 @@ using System.IO;
 using System.Net;
 using Xamarin.Forms;
 
-namespace XamCallWS {
+//isto é do exemplo ainda n tentei adaptar
+
+namespace WeatherApp {
   public class CallPage : ContentPage {
     Label lab1, lab2;
     Entry entTo, entFrom;
