@@ -26,12 +26,12 @@ namespace WeatherApp
             set { name=value; }
         
         }
-        private String Country {
+        public String Country {
             get { return country; }
             set { country = value; }
 
         }
-        private bool Favorite {
+        public bool Favorite {
                get { return favorite; }
             set { favorite = value; }
         }

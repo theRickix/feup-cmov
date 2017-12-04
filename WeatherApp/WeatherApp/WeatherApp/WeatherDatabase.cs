@@ -15,6 +15,7 @@ namespace WeatherApp
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<City>().Wait();
+            
         }
 
 
@@ -50,5 +51,13 @@ namespace WeatherApp
         {
             return database.DeleteAsync(item);
         }
+        public int Init()
+        {
+            //insercções iniciais na base de dados;
+            database.InsertAsync(new City { Name = "Porto",Country="Portugal",Favorite=false });
+            return 0;
+        }
     }
+
+    
 }

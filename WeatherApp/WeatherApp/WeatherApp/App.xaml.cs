@@ -14,7 +14,7 @@ namespace WeatherApp
         {
             InitializeComponent();
 
-            MainPage = new WeatherApp.MainPage();
+            MainPage = new WeatherApp.MainPage(database);
         }
         public static WeatherDatabase Database
         {
@@ -22,7 +22,7 @@ namespace WeatherApp
             {
                 if (database == null)
                 {
-                    database = new WeatherDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                    database = new WeatherDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("WeatherAppSQLite.db3"));
                 }
                 return database;
             }

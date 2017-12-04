@@ -11,7 +11,8 @@
 namespace WeatherApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\WeatherApp\\WeatherApp\\WeatherApp\\MainPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\JP\\Desktop\\Aulas\\CMOV\\feup-cmov\\WeatherApp\\WeatherApp\\WeatherApp\\MainPag" +
+        "e.xaml")]
     public partial class MainPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
