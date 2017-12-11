@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Favourites.xaml.cs">
+      <DependentUpon>Favourites.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FavouritesEdit.xaml.cs">
+      <DependentUpon>FavouritesEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="PastWeather.xaml.cs">
       <DependentUpon>PastWeather.xaml</DependentUpon>
@@ -55,10 +61,14 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\WeatherModel.cs" />
+    <Compile Include="SelectableData.cs" />
     <Compile Include="ServicesHandler\Services.cs" />
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\FavouritesEditViewModel.cs" />
+    <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\WeatherViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +127,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PastWeather.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Favourites.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FavouritesEdit.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

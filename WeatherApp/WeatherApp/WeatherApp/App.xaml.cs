@@ -9,11 +9,11 @@ namespace WeatherApp
 {
     public partial class App : Application
     {
+        public static NavigationPage NavPage = new NavigationPage(new WeatherApp.Navigation());
         public App()
         {
             InitializeComponent();
-
-            MainPage = new WeatherApp.Navigation();
+            MainPage = new Navigation();
         }
 
         protected override void OnStart()

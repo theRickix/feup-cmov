@@ -47,3 +47,5 @@ C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\Wea
 C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\Plugin.Settings.xml
 C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\Plugin.Settings.Abstractions.pdb
 C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\Plugin.Settings.Abstractions.xml
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Favourites.xaml.g.cs
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\obj\Debug\WeatherApp.FavouritesEdit.xaml.g.cs

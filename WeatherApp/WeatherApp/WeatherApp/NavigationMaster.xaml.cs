@@ -34,7 +34,7 @@ namespace WeatherApp
                 MenuItems = new ObservableCollection<NavigationMenuItem>(new[]
                 {
                     new NavigationMenuItem { Id = 0, Title = "Weather", TargetType = typeof(HomePage) },
-                    new NavigationMenuItem { Id = 1, Title = "Settings" },
+                    new NavigationMenuItem { Id = 1, Title = "Favourites", TargetType = typeof(Favourites)},
                 });
             }
             

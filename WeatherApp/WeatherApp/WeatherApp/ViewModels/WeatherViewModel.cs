@@ -28,16 +28,18 @@ namespace WeatherApp.ViewModels
             }
         }
 
-        private List<string> _cities;
+        private List<string> _favCities;
+
         public List<string> Cities
         {
             get
             {
                 string favouriteCities = Settings.FavouriteCitiesSettings;
-                _cities = new List<string>(favouriteCities.Split(','));
-                return _cities;
+                _favCities = new List<string>(favouriteCities.Split(','));
+                return _favCities;
             }
         }
+
 
         private string city;
 
