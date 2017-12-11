@@ -11,7 +11,8 @@
 namespace WeatherApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\WeatherApp\\WeatherApp\\WeatherApp\\App.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Ricardo Magalhães\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp\\App.xaml" +
+        "")]
     public partial class App : global::Xamarin.Forms.Application {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

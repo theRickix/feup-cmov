@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="6aad0b14-e05d-480d-adce-26b966687c5d"
-    Publisher="CN=JP"
+    Name="56b1817c-e6d4-45ae-9f4d-e2b22b9c9326"
+    Publisher="CN=Ricardo Magalhães"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="6aad0b14-e05d-480d-adce-26b966687c5d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="56b1817c-e6d4-45ae-9f4d-e2b22b9c9326" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>WeatherApp.UWP</DisplayName>
-    <PublisherDisplayName>JP</PublisherDisplayName>
+    <PublisherDisplayName>Ricardo Magalhães</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

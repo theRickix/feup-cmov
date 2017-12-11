@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WeatherApp"
+             x:Class="WeatherApp.CurrentWeather"
+             xmlns:weatherVm="clr-namespace:WeatherApp.ViewModels"
+             Title="Current">
+    <ContentPage.BindingContext>
+        <weatherVm:WeatherViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20,40,20,20">
+        <Picker SelectedItem="{Binding City}" Title="City">
+            <Picker.Items>
+                <x:String>Porto</x:String>
+                <x:String>Lisbon</x:String>
+            </Picker.Items>
+        </Picker>
+        <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+
+        <StackLayout Orientation="Horizontal">
+            <StackLayout HorizontalOptions="Center">
+                <Image Source="{Binding WeatherModel.DisplayedImage}" />
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="{Binding WeatherModel.CompleteLocation}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Temperature:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding WeatherModel.current.temp_c}"/>
+            </StackLayout>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>

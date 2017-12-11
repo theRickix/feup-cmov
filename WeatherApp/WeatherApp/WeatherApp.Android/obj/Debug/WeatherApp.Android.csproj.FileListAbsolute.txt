@@ -1,39 +1,59 @@
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.Android.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.Android.pdb
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.Android.apk
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.Android-Signed.apk
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\FormsViewGroup.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Design.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v4.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.CardView.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.MediaRouter.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Core.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Platform.Android.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Platform.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Xaml.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.pdb
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\FormsViewGroup.pdb
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Core.pdb
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Core.xml
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Platform.Android.pdb
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Xaml.pdb
-C:\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Xaml.xml
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.csprojResolveAssemblyReference.cache
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.csproj.CoreCompileInputs.cache
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.dll
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.pdb
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\bin\WeatherApp.Android.apk
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable\icon.png
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable-hdpi\icon.png
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable-xhdpi\icon.png
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable-xxhdpi\icon.png
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\layout\tabbar.xml
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\layout\toolbar.xml
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\values\styles.xml
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\R.cs.flag
-C:\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\uploadflags.txt
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.Android.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.Android.pdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\com.companyname.WeatherApp.apk
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\com.companyname.WeatherApp-Signed.apk
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\FormsViewGroup.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Annotations.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Compat.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Core.UI.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Core.Utils.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Design.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Fragment.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Media.Compat.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v4.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.CardView.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.MediaRouter.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Platform.Android.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Platform.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.pdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\FormsViewGroup.pdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\FormsViewGroup.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Core.pdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Core.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Platform.Android.pdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Platform.Android.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Xaml.pdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Xamarin.Forms.Xaml.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.csprojResolveAssemblyReference.cache
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.csproj.CoreCompileInputs.cache
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.dll
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\WeatherApp.Android.pdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\bin\com.companyname.WeatherApp.apk
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable\icon.png
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable-hdpi\icon.png
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable-xhdpi\icon.png
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\drawable-xxhdpi\icon.png
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\layout\tabbar.xml
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\layout\toolbar.xml
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\res\values\styles.xml
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\R.cs.flag
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\uploadflags.txt
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\bin\Debug\WeatherApp.Android.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\assets\FormsViewGroup.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\assets\WeatherApp.Android.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\assets\WeatherApp.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\assets\Xamarin.Forms.Core.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll.mdb
+C:\Users\Ricardo Magalhães\source\repos\WeatherApp\WeatherApp\WeatherApp.Android\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll.mdb
