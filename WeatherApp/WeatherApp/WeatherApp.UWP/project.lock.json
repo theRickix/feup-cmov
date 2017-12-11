@@ -2146,6 +2146,17 @@
           }
         }
       },
+      "Xam.Plugins.Settings/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
       "Xamarin.Forms/2.4.0.280": {
         "type": "package",
         "compile": {
@@ -4420,6 +4431,17 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugins.Settings/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
         }
       },
       "Xamarin.Forms/2.4.0.280": {
@@ -6734,6 +6756,17 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Xam.Plugins.Settings/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
       "Xamarin.Forms/2.4.0.280": {
         "type": "package",
         "compile": {
@@ -9017,6 +9050,17 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugins.Settings/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
         }
       },
       "Xamarin.Forms/2.4.0.280": {
@@ -11340,6 +11384,17 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Xam.Plugins.Settings/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        }
+      },
       "Xamarin.Forms/2.4.0.280": {
         "type": "package",
         "compile": {
@@ -13623,6 +13678,17 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugins.Settings/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
         }
       },
       "Xamarin.Forms/2.4.0.280": {
@@ -15944,6 +16010,17 @@
         },
         "runtime": {
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugins.Settings/3.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Settings.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Settings.dll": {}
         }
       },
       "Xamarin.Forms/2.4.0.280": {
@@ -22149,6 +22226,72 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Xam.Plugins.Settings/3.1.1": {
+      "sha512": "EQEYQJ64ZLqui5GWkLMavgqitHxwUHZHryTzUD1021UBuz1XwDSjPL45W0K4pPXjz9oKbg7YpRXKPR1luPr/5Q==",
+      "type": "package",
+      "path": "xam.plugins.settings/3.1.1",
+      "files": [
+        "content/MonoAndroid10/Helpers/Settings.cs.pp",
+        "content/UAP10/Helpers/Settings.cs.pp",
+        "content/Xamarin.Mac20/Helpers/Settings.cs.pp",
+        "content/Xamarin.iOS10/Helpers/Settings.cs.pp",
+        "content/net45/Helpers/Settings.cs.pp",
+        "content/netstandard1.0/Helpers/Settings.cs.pp",
+        "content/xamarintvOS/Helpers/Settings.cs.pp",
+        "content/xamarinwatchOS/Helpers/Settings.cs.pp",
+        "lib/MonoAndroid10/Plugin.Settings.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Settings.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Settings.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Settings.dll",
+        "lib/MonoAndroid10/Plugin.Settings.pdb",
+        "lib/MonoAndroid10/Plugin.Settings.xml",
+        "lib/UAP10/Plugin.Settings.Abstractions.dll",
+        "lib/UAP10/Plugin.Settings.Abstractions.pdb",
+        "lib/UAP10/Plugin.Settings.Abstractions.xml",
+        "lib/UAP10/Plugin.Settings.XML",
+        "lib/UAP10/Plugin.Settings.dll",
+        "lib/UAP10/Plugin.Settings.pdb",
+        "lib/UAP10/Plugin.Settings.pri",
+        "lib/Xamarin.Mac20/Plugin.Settings.Abstractions.dll",
+        "lib/Xamarin.Mac20/Plugin.Settings.Abstractions.pdb",
+        "lib/Xamarin.Mac20/Plugin.Settings.Abstractions.xml",
+        "lib/Xamarin.Mac20/Plugin.Settings.XML",
+        "lib/Xamarin.Mac20/Plugin.Settings.dll",
+        "lib/Xamarin.Mac20/Plugin.Settings.pdb",
+        "lib/Xamarin.iOS10/Plugin.Settings.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Settings.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.Settings.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Settings.dll",
+        "lib/Xamarin.iOS10/Plugin.Settings.xml",
+        "lib/net45/Plugin.Settings.Abstractions.dll",
+        "lib/net45/Plugin.Settings.Abstractions.pdb",
+        "lib/net45/Plugin.Settings.Abstractions.xml",
+        "lib/net45/Plugin.Settings.XML",
+        "lib/net45/Plugin.Settings.dll",
+        "lib/net45/Plugin.Settings.pdb",
+        "lib/netstandard1.0/Plugin.Settings.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.Settings.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.Settings.Abstractions.xml",
+        "lib/netstandard1.0/Plugin.Settings.deps.json",
+        "lib/netstandard1.0/Plugin.Settings.dll",
+        "lib/netstandard1.0/Plugin.Settings.xml",
+        "lib/xamarintvOS/Plugin.Settings.Abstractions.dll",
+        "lib/xamarintvOS/Plugin.Settings.Abstractions.pdb",
+        "lib/xamarintvOS/Plugin.Settings.Abstractions.xml",
+        "lib/xamarintvOS/Plugin.Settings.dll",
+        "lib/xamarintvOS/Plugin.Settings.pdb",
+        "lib/xamarintvOS/Plugin.Settings.xml",
+        "lib/xamarinwatchOS/Plugin.Settings.Abstractions.dll",
+        "lib/xamarinwatchOS/Plugin.Settings.Abstractions.pdb",
+        "lib/xamarinwatchOS/Plugin.Settings.Abstractions.xml",
+        "lib/xamarinwatchOS/Plugin.Settings.dll",
+        "lib/xamarinwatchOS/Plugin.Settings.pdb",
+        "lib/xamarinwatchOS/Plugin.Settings.xml",
+        "readme.txt",
+        "xam.plugins.settings.3.1.1.nupkg.sha512",
+        "xam.plugins.settings.nuspec"
+      ]
+    },
     "Xamarin.Forms/2.4.0.280": {
       "sha512": "YzXTyRvhMv2kHgs6CGA89OVwUWrS05i7GW/OXl0vcn77OeJ4Zj08tErhc5bL6TAJYg4vWi+uMTWryO+J65U0yA==",
       "type": "package",
@@ -22346,6 +22489,7 @@
     "": [
       "Microsoft.Bcl.Build >= 1.0.21",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.2.2",
+      "Xam.Plugins.Settings >= 3.1.1",
       "Xamarin.Forms >= 2.4.0.280"
     ],
     "UAP,Version=v10.0.10240": []
@@ -22355,12 +22499,12 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ricardo Magalhães\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\WeatherApp.UWP.csproj",
+      "projectUniqueName": "C:\\Users\\Ricardo Magalhães\\Documents\\GitHub\\feup-cmov\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\WeatherApp.UWP.csproj",
       "projectName": "WeatherApp.UWP",
-      "projectPath": "C:\\Users\\Ricardo Magalhães\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\WeatherApp.UWP.csproj",
-      "projectJsonPath": "C:\\Users\\Ricardo Magalhães\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\project.json",
+      "projectPath": "C:\\Users\\Ricardo Magalhães\\Documents\\GitHub\\feup-cmov\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\WeatherApp.UWP.csproj",
+      "projectJsonPath": "C:\\Users\\Ricardo Magalhães\\Documents\\GitHub\\feup-cmov\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\project.json",
       "packagesPath": "C:\\Users\\Ricardo Magalhães\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ricardo Magalhães\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\obj\\",
+      "outputPath": "C:\\Users\\Ricardo Magalhães\\Documents\\GitHub\\feup-cmov\\WeatherApp\\WeatherApp\\WeatherApp.UWP\\obj\\",
       "projectStyle": "ProjectJson",
       "configFilePaths": [
         "C:\\Users\\Ricardo Magalhães\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22373,8 +22517,8 @@
       "frameworks": {
         "uap10.0.10240": {
           "projectReferences": {
-            "C:\\Users\\Ricardo Magalhães\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp\\WeatherApp.csproj": {
-              "projectPath": "C:\\Users\\Ricardo Magalhães\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp\\WeatherApp.csproj"
+            "C:\\Users\\Ricardo Magalhães\\Documents\\GitHub\\feup-cmov\\WeatherApp\\WeatherApp\\WeatherApp\\WeatherApp.csproj": {
+              "projectPath": "C:\\Users\\Ricardo Magalhães\\Documents\\GitHub\\feup-cmov\\WeatherApp\\WeatherApp\\WeatherApp\\WeatherApp.csproj"
             }
           }
         }
@@ -22383,6 +22527,7 @@
     "dependencies": {
       "Microsoft.Bcl.Build": "1.0.21",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+      "Xam.Plugins.Settings": "3.1.1",
       "Xamarin.Forms": "2.4.0.280"
     },
     "frameworks": {

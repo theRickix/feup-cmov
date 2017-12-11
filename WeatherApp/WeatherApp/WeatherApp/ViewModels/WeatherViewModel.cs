@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using WeatherApp.ServicesHandler;
+using WeatherApp.Helpers;
 
 namespace WeatherApp.ViewModels
 {
@@ -22,7 +23,19 @@ namespace WeatherApp.ViewModels
             set
             {
                 weatherModel = value;
+                IsVisible = true;
                 OnPropertyChanged();
+            }
+        }
+
+        private List<string> _cities;
+        public List<string> Cities
+        {
+            get
+            {
+                string favouriteCities = Settings.FavouriteCitiesSettings;
+                _cities = new List<string>(favouriteCities.Split(','));
+                return _cities;
             }
         }
 
@@ -39,7 +52,6 @@ namespace WeatherApp.ViewModels
             }
         }
 
-        private string selectedItem;
 
         private bool _isBusy;
 
@@ -49,6 +61,20 @@ namespace WeatherApp.ViewModels
             set
             {
                 _isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isVisible;
+        public bool IsVisible
+        {
+            get
+            {
+                return _isVisible;
+            }
+            set
+            {
+                _isVisible = value;
                 OnPropertyChanged();
             }
         }

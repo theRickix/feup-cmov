@@ -64,5 +64,25 @@ namespace WeatherApp
         {
             get { return this.location.name + ", " + this.location.country; }
         }
+
+        public string TempCelsius
+        {
+            get { return this.current.temp_c.ToString(); }
+        }
+
+        public String Wind
+        {
+            get { return this.current.wind_kph.ToString() + " km/h"; }
+        }
+
+        public String Humidity
+        {
+            get { return this.current.humidity + "%"; }
+        }
+
+        public String Precipitation
+        {
+            get { return this.current.precip_mm + " mm"; }
+        }
     }
 }
