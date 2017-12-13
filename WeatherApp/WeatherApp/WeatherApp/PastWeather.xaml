@@ -10,6 +10,8 @@
         <weatherVm:PastWeatherViewModel/>
     </ContentPage.BindingContext>
 
+    <ScrollView>
+
     <StackLayout Padding="20,40,20,20">
         <Picker SelectedItem="{Binding City}" Title="City" ItemsSource="{Binding Cities}" HorizontalOptions="Start">
         </Picker>
@@ -74,19 +76,21 @@
             </StackLayout>
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
-            <StackLayout HorizontalOptions="StartAndExpand">
-                <Label Text="Avg. Humidity:"/>
+            <StackLayout  IsVisible="{Binding IsVisible}">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Avg. Humidity:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding PastWeatherModel.AvgHumidity}"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding PastWeatherModel.AvgHumidity}"/>
+
+            <StackLayout IsVisible="{Binding IsVisible}">
+                <microcharts:ChartView x:Name="chartView" Chart="{Binding Chart}" HeightRequest="300" WidthRequest="500"/>
             </StackLayout>
-        </StackLayout>
-        <StackLayout>
 
-            <microcharts:ChartView x:Name="chartView" />
         </StackLayout>
-
-    </StackLayout>
+        
+    </ScrollView>
 
 </ContentPage>

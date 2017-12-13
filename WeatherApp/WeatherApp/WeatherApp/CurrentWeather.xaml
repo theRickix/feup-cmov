@@ -9,56 +9,58 @@
         <weatherVm:WeatherViewModel/>
     </ContentPage.BindingContext>
 
-    <StackLayout Padding="20,40,20,20">
-        <Picker SelectedItem="{Binding City}" Title="City" ItemsSource="{Binding Cities}">
-        </Picker>
-        <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+    <ScrollView>
 
-        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
-            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
-                <Image Source="{Binding WeatherModel.DisplayedImage}" />
+        <StackLayout Padding="20,40,20,20">
+            <Picker SelectedItem="{Binding City}" Title="City" ItemsSource="{Binding Cities}">
+            </Picker>
+            <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+
+            <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
+                <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                    <Image Source="{Binding WeatherModel.DisplayedImage}" />
+                </StackLayout>
+                <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                    <Label Text="{Binding WeatherModel.TempCelsius}" FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                    <Label Text="ºC" FontSize="Medium" IsVisible="{Binding IsVisible}"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
-                <Label Text="{Binding WeatherModel.TempCelsius}" FontSize="Large"/>
+
+            <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
+                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                    <Label Text="{Binding WeatherModel.CompleteLocation}" FontSize="Large"/>
+                </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
-                <Label Text="ºC" FontSize="Medium" IsVisible="{Binding IsVisible}"/>
+
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Wind:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherModel.Wind}"/>
+                </StackLayout>
             </StackLayout>
+
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Precipitation:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherModel.Precipitation}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Humidity:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherModel.Humidity}"/>
+                </StackLayout>
+            </StackLayout>
+
         </StackLayout>
-
-        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
-            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-                <Label Text="{Binding WeatherModel.CompleteLocation}" FontSize="Large"/>
-            </StackLayout>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
-            <StackLayout HorizontalOptions="StartAndExpand">
-                <Label Text="Wind:"/>
-            </StackLayout>
-            <StackLayout HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding WeatherModel.Wind}"/>
-            </StackLayout>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
-            <StackLayout HorizontalOptions="StartAndExpand">
-                <Label Text="Precipitation:"/>
-            </StackLayout>
-            <StackLayout HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding WeatherModel.Precipitation}"/>
-            </StackLayout>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
-            <StackLayout HorizontalOptions="StartAndExpand">
-                <Label Text="Humidity:"/>
-            </StackLayout>
-            <StackLayout HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding WeatherModel.Humidity}"/>
-            </StackLayout>
-        </StackLayout>
-
-    </StackLayout>
-
+    </ScrollView>
 </ContentPage>

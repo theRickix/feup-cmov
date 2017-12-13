@@ -49,3 +49,10 @@ C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\Wea
 C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\Plugin.Settings.Abstractions.xml
 C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Favourites.xaml.g.cs
 C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\obj\Debug\WeatherApp.FavouritesEdit.xaml.g.cs
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\Microcharts.dll
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\Microcharts.Forms.dll
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\SkiaSharp.dll
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\SkiaSharp.Views.Forms.dll
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\System.ValueTuple.dll
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\SkiaSharp.xml
+C:\Users\Ricardo Magalhães\Documents\GitHub\feup-cmov\WeatherApp\WeatherApp\WeatherApp\bin\Debug\System.ValueTuple.xml

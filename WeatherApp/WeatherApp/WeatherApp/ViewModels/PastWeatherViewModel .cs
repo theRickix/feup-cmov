@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 using WeatherApp.ServicesHandler;
 using WeatherApp.Helpers;
 using WeatherApp.Models;
+using Microcharts;
+using SkiaSharp;
 
 namespace WeatherApp.ViewModels
 {
@@ -15,6 +17,25 @@ namespace WeatherApp.ViewModels
     {
 
         Services services = new Services();
+
+        private LineChart chart;
+ 
+
+
+        public LineChart Chart
+        {
+            get
+            {   
+                return chart;
+            }
+
+            set
+            {
+                chart = value;
+                OnPropertyChanged();
+            }
+
+        }
 
         private DateTime minDate;
         public DateTime MinimumDate
@@ -26,6 +47,7 @@ namespace WeatherApp.ViewModels
                 
             }
         }
+
 
         private DateTime maxDate;
         public DateTime MaximumDate
@@ -126,10 +148,29 @@ namespace WeatherApp.ViewModels
             {
                 IsBusy = true;
                 PastWeatherModel = await services.GetPastWeather(city,date);
+
             }
             finally
             {
                 IsBusy = false;
+
+                var entries = new List<Microcharts.Entry>();
+
+                List<Models.Hour> hours = weatherModel.NeededHours;
+                int i = 0;
+                foreach (Models.Hour hour in hours)
+                {
+
+                    entries.Add(new Microcharts.Entry((float)hour.temp_c)
+                    {
+                        Label = i+":00",
+                        ValueLabel = hour.temp_c.ToString()+"ºC",
+                        Color = SKColor.Parse("#266489")
+
+                    });
+                    i+=3;
+                }
+                Chart = new LineChart() { Entries = entries }; ;
             }
         }
 

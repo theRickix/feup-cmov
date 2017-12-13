@@ -2,6 +2,46 @@ WeatherApp.Droid.MainActivity, WeatherApp.Android;md5a05fc8bb7c1e0b5459c5d0d5dd0
 WeatherApp.Droid.MainActivity, WeatherApp.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5a05fc8bb7c1e0b5459c5d0d5dd0b4568.MainActivity
 WeatherApp.Droid.MainActivity;md5a05fc8bb7c1e0b5459c5d0d5dd0b4568.MainActivity
 weatherapp.droid.MainActivity;md5a05fc8bb7c1e0b5459c5d0d5dd0b4568.MainActivity
+Microcharts.Droid.ChartView, Microcharts.Droid;md53d40bc03ae9a8760d3cc8ffd2d061aa9.ChartView
+Microcharts.Droid.ChartView, Microcharts.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md53d40bc03ae9a8760d3cc8ffd2d061aa9.ChartView
+Microcharts.Droid.ChartView;md53d40bc03ae9a8760d3cc8ffd2d061aa9.ChartView
+microcharts.droid.ChartView;md53d40bc03ae9a8760d3cc8ffd2d061aa9.ChartView
+SkiaSharp.Views.Android.SKCanvasView, SkiaSharp.Views.Android;md50a429594d0894eb20c31b81b4e1d1aaf.SKCanvasView
+SkiaSharp.Views.Android.SKCanvasView, SkiaSharp.Views.Android, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756;md50a429594d0894eb20c31b81b4e1d1aaf.SKCanvasView
+SkiaSharp.Views.Android.SKCanvasView;md50a429594d0894eb20c31b81b4e1d1aaf.SKCanvasView
+skiasharp.views.android.SKCanvasView;md50a429594d0894eb20c31b81b4e1d1aaf.SKCanvasView
+SkiaSharp.Views.Android.SKGLSurfaceViewRenderer, SkiaSharp.Views.Android;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceViewRenderer
+SkiaSharp.Views.Android.SKGLSurfaceViewRenderer, SkiaSharp.Views.Android, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceViewRenderer
+SkiaSharp.Views.Android.SKGLSurfaceViewRenderer;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceViewRenderer
+skiasharp.views.android.SKGLSurfaceViewRenderer;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceViewRenderer
+SkiaSharp.Views.Android.SKGLSurfaceView, SkiaSharp.Views.Android;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView
+SkiaSharp.Views.Android.SKGLSurfaceView, SkiaSharp.Views.Android, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView
+SkiaSharp.Views.Android.SKGLSurfaceView;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView
+skiasharp.views.android.SKGLSurfaceView;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView
+SkiaSharp.Views.Android.SKGLSurfaceView/InternalRenderer, SkiaSharp.Views.Android;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView_InternalRenderer
+SkiaSharp.Views.Android.SKGLSurfaceView+InternalRenderer, SkiaSharp.Views.Android, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView_InternalRenderer
+SkiaSharp.Views.Android.SKGLSurfaceView.InternalRenderer;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView_InternalRenderer
+skiasharp.views.android.SKGLSurfaceView_InternalRenderer;md50a429594d0894eb20c31b81b4e1d1aaf.SKGLSurfaceView_InternalRenderer
+SkiaSharp.Views.Android.SKSurfaceView, SkiaSharp.Views.Android;md50a429594d0894eb20c31b81b4e1d1aaf.SKSurfaceView
+SkiaSharp.Views.Android.SKSurfaceView, SkiaSharp.Views.Android, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756;md50a429594d0894eb20c31b81b4e1d1aaf.SKSurfaceView
+SkiaSharp.Views.Android.SKSurfaceView;md50a429594d0894eb20c31b81b4e1d1aaf.SKSurfaceView
+skiasharp.views.android.SKSurfaceView;md50a429594d0894eb20c31b81b4e1d1aaf.SKSurfaceView
+SkiaSharp.Views.Forms.SKCanvasViewRenderer, SkiaSharp.Views.Forms;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRenderer
+SkiaSharp.Views.Forms.SKCanvasViewRenderer, SkiaSharp.Views.Forms, Version=1.59.0.0, Culture=neutral, PublicKeyToken=null;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRenderer
+SkiaSharp.Views.Forms.SKCanvasViewRenderer;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRenderer
+skiasharp.views.forms.SKCanvasViewRenderer;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRenderer
+SkiaSharp.Views.Forms.SKGLViewRenderer, SkiaSharp.Views.Forms;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRenderer
+SkiaSharp.Views.Forms.SKGLViewRenderer, SkiaSharp.Views.Forms, Version=1.59.0.0, Culture=neutral, PublicKeyToken=null;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRenderer
+SkiaSharp.Views.Forms.SKGLViewRenderer;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRenderer
+skiasharp.views.forms.SKGLViewRenderer;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRenderer
+SkiaSharp.Views.Forms.SKCanvasViewRendererBase`2, SkiaSharp.Views.Forms;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRendererBase_2
+SkiaSharp.Views.Forms.SKCanvasViewRendererBase`2, SkiaSharp.Views.Forms, Version=1.59.0.0, Culture=neutral, PublicKeyToken=null;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRendererBase_2
+SkiaSharp.Views.Forms.SKCanvasViewRendererBase`2;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRendererBase_2
+skiasharp.views.forms.SKCanvasViewRendererBase_2;md55430eeafbf000a5ac5c6dc7e4c10488b.SKCanvasViewRendererBase_2
+SkiaSharp.Views.Forms.SKGLViewRendererBase`2, SkiaSharp.Views.Forms;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRendererBase_2
+SkiaSharp.Views.Forms.SKGLViewRendererBase`2, SkiaSharp.Views.Forms, Version=1.59.0.0, Culture=neutral, PublicKeyToken=null;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRendererBase_2
+SkiaSharp.Views.Forms.SKGLViewRendererBase`2;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRendererBase_2
+skiasharp.views.forms.SKGLViewRendererBase_2;md55430eeafbf000a5ac5c6dc7e4c10488b.SKGLViewRendererBase_2
 Android.Support.V4.Widget.SearchViewCompat/IOnCloseListenerImplementor, Xamarin.Android.Support.Compat;mono.android.support.v4.widget.SearchViewCompat_OnCloseListenerImplementor
 Android.Support.V4.Widget.SearchViewCompat+IOnCloseListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v4.widget.SearchViewCompat_OnCloseListenerImplementor
 Android.Support.V4.Widget.SearchViewCompat.IOnCloseListenerImplementor;mono.android.support.v4.widget.SearchViewCompat_OnCloseListenerImplementor
@@ -122,6 +162,10 @@ Android.Support.V4.Media.Session.MediaSessionCompat/IOnActiveChangeListenerImple
 Android.Support.V4.Media.Session.MediaSessionCompat+IOnActiveChangeListenerImplementor, Xamarin.Android.Support.Media.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v4.media.session.MediaSessionCompat_OnActiveChangeListenerImplementor
 Android.Support.V4.Media.Session.MediaSessionCompat.IOnActiveChangeListenerImplementor;mono.android.support.v4.media.session.MediaSessionCompat_OnActiveChangeListenerImplementor
 mono.android.support.v4.media.session.MediaSessionCompat_OnActiveChangeListenerImplementor;mono.android.support.v4.media.session.MediaSessionCompat_OnActiveChangeListenerImplementor
+Android.Support.Transitions.Transition/ITransitionListenerImplementor, Xamarin.Android.Support.Transition;mono.android.support.transition.Transition_TransitionListenerImplementor
+Android.Support.Transitions.Transition+ITransitionListenerImplementor, Xamarin.Android.Support.Transition, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.transition.Transition_TransitionListenerImplementor
+Android.Support.Transitions.Transition.ITransitionListenerImplementor;mono.android.support.transition.Transition_TransitionListenerImplementor
+mono.android.support.transition.Transition_TransitionListenerImplementor;mono.android.support.transition.Transition_TransitionListenerImplementor
 Android.Support.V7.Widget.Toolbar/NavigationOnClickEventDispatcher, Xamarin.Android.Support.v7.AppCompat;android.support.v7.widget.Toolbar_NavigationOnClickEventDispatcher
 Android.Support.V7.Widget.Toolbar+NavigationOnClickEventDispatcher, Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;android.support.v7.widget.Toolbar_NavigationOnClickEventDispatcher
 Android.Support.V7.Widget.Toolbar.NavigationOnClickEventDispatcher;android.support.v7.widget.Toolbar_NavigationOnClickEventDispatcher
@@ -202,6 +246,10 @@ Android.Support.V7.Media.RemotePlaybackClient/IOnMessageReceivedListenerImplemen
 Android.Support.V7.Media.RemotePlaybackClient+IOnMessageReceivedListenerImplementor, Xamarin.Android.Support.v7.MediaRouter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v7.media.RemotePlaybackClient_OnMessageReceivedListenerImplementor
 Android.Support.V7.Media.RemotePlaybackClient.IOnMessageReceivedListenerImplementor;mono.android.support.v7.media.RemotePlaybackClient_OnMessageReceivedListenerImplementor
 mono.android.support.v7.media.RemotePlaybackClient_OnMessageReceivedListenerImplementor;mono.android.support.v7.media.RemotePlaybackClient_OnMessageReceivedListenerImplementor
+Android.Support.V7.Graphics.Palette/IPaletteAsyncListenerImplementor, Xamarin.Android.Support.v7.Palette;mono.android.support.v7.graphics.Palette_PaletteAsyncListenerImplementor
+Android.Support.V7.Graphics.Palette+IPaletteAsyncListenerImplementor, Xamarin.Android.Support.v7.Palette, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v7.graphics.Palette_PaletteAsyncListenerImplementor
+Android.Support.V7.Graphics.Palette.IPaletteAsyncListenerImplementor;mono.android.support.v7.graphics.Palette_PaletteAsyncListenerImplementor
+mono.android.support.v7.graphics.Palette_PaletteAsyncListenerImplementor;mono.android.support.v7.graphics.Palette_PaletteAsyncListenerImplementor
 Android.Support.V7.Widget.RecyclerView/ItemAnimator/IItemAnimatorFinishedListenerImplementor, Xamarin.Android.Support.v7.RecyclerView;mono.android.support.v7.widget.RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor
 Android.Support.V7.Widget.RecyclerView+ItemAnimator+IItemAnimatorFinishedListenerImplementor, Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v7.widget.RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor
 Android.Support.V7.Widget.RecyclerView.ItemAnimator.IItemAnimatorFinishedListenerImplementor;mono.android.support.v7.widget.RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor
