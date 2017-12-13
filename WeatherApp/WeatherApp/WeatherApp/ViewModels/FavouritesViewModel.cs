@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using WeatherApp.Helpers;
+using System;
 
 namespace WeatherApp.ViewModels
 {
@@ -37,6 +38,32 @@ namespace WeatherApp.ViewModels
             OnPropertyChanged(nameof(DataSource));
         }
 
+        public string AllCities
+        {
+            get
+            {
+                return Settings.AllCitiesSettings;
+            }
+            set
+            {
+                Settings.AllCitiesSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string FavouriteCities
+        {
+            get
+            {
+                return Settings.FavouriteCitiesSettings;
+            }
+            set
+            {
+                Settings.FavouriteCitiesSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public ICommand SelectCommand
         {
@@ -45,6 +72,7 @@ namespace WeatherApp.ViewModels
                 return new Command(() =>
                 {
                     App.Current.MainPage.Navigation.PushModalAsync(new FavouritesEdit(SelectedData));
+                    
                 });
             }
 

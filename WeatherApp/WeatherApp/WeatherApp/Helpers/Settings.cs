@@ -61,7 +61,7 @@ namespace WeatherApp.Helpers
 
         #region Setting Constants
 
-        private const string FavouriteCitiesKey = "allcities_key";
+        private const string FavouriteCitiesKey = "favouritecities_key";
         private static readonly string FavouriteCitiesDefault = "Aveiro,Beja,Braga,Bragança,Castelo Branco,Coimbra,Évora,Faro,Guarda,Leiria,Lisboa,Portalegre,Porto,Santarém,Setúbal,Viana do Castelo,Vila Real,Viseu";
 
         #endregion

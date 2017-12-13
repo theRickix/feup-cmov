@@ -35,7 +35,26 @@ namespace WeatherApp.ViewModels
             var list = new List<SelectableData<string>>();
 
             foreach (var data in DataList)
+            {
                 list.Add(new SelectableData<string>() { Data = data.Data, Selected = data.Selected });
+            }
+
+            string favouriteCities = Settings.FavouriteCitiesSettings;
+            List<string> favCitiesList = new List<string>();
+            foreach (SelectableData<string> sd in list)
+            {
+                string s = sd.Data;
+
+                if (sd.Selected)
+                {
+                    favCitiesList.Add(s);
+                }
+
+
+            }
+            Settings.FavouriteCitiesSettings = String.Join(",", favCitiesList);
+            System.Diagnostics.Debug.WriteLine(Settings.FavouriteCitiesSettings);
+
 
             return list;
         }
@@ -44,24 +63,6 @@ namespace WeatherApp.ViewModels
         {
             get
             {
-                string favouriteCities = Settings.FavouriteCitiesSettings;
-                List<string> favCitiesList = new List<string>(favouriteCities.Split(','));
-                foreach (SelectableData<string> sd in GetNewData())
-                {
-                    string s = sd.Data;
-                    if (sd.Selected && !favCitiesList.Contains(s))
-                    {
-                        favCitiesList.Add(s);
-                    }
-                    else if (!sd.Selected && favCitiesList.Contains(s))
-                    {
-                        favCitiesList.Remove(s);
-                    }
-
-                    Settings.FavouriteCitiesSettings = String.Join(",", favCitiesList);
-                }
-
-
 
                 return new Command(async () =>
                 {

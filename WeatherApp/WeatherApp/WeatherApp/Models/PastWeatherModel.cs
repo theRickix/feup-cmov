@@ -139,11 +139,11 @@ namespace WeatherApp.Models
 
         public string MinTemp
         {
-            get { return this.forecast.forecastday[0].day.mintemp_c.ToString(); }
+            get { return this.forecast.forecastday[0].day.mintemp_c.ToString()+"ºC"; }
         }
         public string MaxTemp
         {
-            get { return this.forecast.forecastday[0].day.maxtemp_c.ToString(); }
+            get { return this.forecast.forecastday[0].day.maxtemp_c.ToString()+"ºC"; }
         }
 
         public string MaxWind

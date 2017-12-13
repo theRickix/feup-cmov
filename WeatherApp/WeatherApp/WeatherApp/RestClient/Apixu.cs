@@ -14,7 +14,7 @@ namespace WeatherApp.RestClient
             var client = new System.Net.Http.HttpClient();
             client.BaseAddress = new Uri("http://api.apixu.com/v1/");
 
-            var response = await client.GetAsync("current.json?key=30463600dbcf4b45873192147170412&q=" + city);
+            var response = await client.GetAsync("current.json?key=30463600dbcf4b45873192147170412&q=" + city+",Portugal");
 
             var weatherJson = response.Content.ReadAsStringAsync().Result;
 
@@ -28,7 +28,7 @@ namespace WeatherApp.RestClient
             var client = new System.Net.Http.HttpClient();
             client.BaseAddress = new Uri("http://api.apixu.com/v1/");
 
-            var response = await client.GetAsync("history.json?key=30463600dbcf4b45873192147170412&q=" + city+"&dt="+date.ToString("yyyy-MM-dd"));
+            var response = await client.GetAsync("history.json?key=30463600dbcf4b45873192147170412&q=" + city+",Portugal&dt="+date.ToString("yyyy-MM-dd"));
 
             var weatherJson = response.Content.ReadAsStringAsync().Result;
 

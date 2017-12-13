@@ -13,10 +13,10 @@
     <ScrollView>
 
     <StackLayout Padding="20,40,20,20">
-        <Picker SelectedItem="{Binding City}" Title="City" ItemsSource="{Binding Cities}" HorizontalOptions="Start">
+        <Picker SelectedItem="{Binding City}" Title="City" ItemsSource="{Binding Cities}" HorizontalOptions="Fill">
         </Picker>
 
-        <DatePicker Date="{Binding Date}" Format="yyyy-MM-dd" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" HorizontalOptions="Start">
+        <DatePicker Date="{Binding Date}" Format="yyyy-MM-dd" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" HorizontalOptions="Fill">
 
         </DatePicker>
 
@@ -76,7 +76,7 @@
             </StackLayout>
         </StackLayout>
 
-            <StackLayout  IsVisible="{Binding IsVisible}">
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
                 <StackLayout HorizontalOptions="StartAndExpand">
                     <Label Text="Avg. Humidity:"/>
                 </StackLayout>
