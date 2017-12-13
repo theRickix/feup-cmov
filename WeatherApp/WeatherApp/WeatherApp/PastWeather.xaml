@@ -86,7 +86,7 @@
             </StackLayout>
 
             <StackLayout IsVisible="{Binding IsVisible}">
-                <microcharts:ChartView x:Name="chartView" Chart="{Binding Chart}" HeightRequest="300" WidthRequest="500"/>
+                <microcharts:ChartView x:Name="chartView" Chart="{Binding Chart}" HeightRequest="300" WidthRequest="500" />
             </StackLayout>
 
         </StackLayout>
