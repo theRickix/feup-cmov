@@ -42,7 +42,9 @@
       <DependentUpon>FavouritesEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Models\PastWeatherModel.cs" />
+    <Compile Include="FutureWeather.xaml.cs">
+      <DependentUpon>FutureWeather.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PastWeather.xaml.cs">
       <DependentUpon>PastWeather.xaml</DependentUpon>
     </Compile>
@@ -70,6 +72,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FavouritesEditViewModel.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
+    <Compile Include="ViewModels\FutureWeatherViewModel.cs" />
     <Compile Include="ViewModels\PastWeatherViewModel .cs" />
     <Compile Include="ViewModels\WeatherViewModel.cs" />
   </ItemGroup>
@@ -156,6 +159,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FavouritesEdit.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FutureWeather.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

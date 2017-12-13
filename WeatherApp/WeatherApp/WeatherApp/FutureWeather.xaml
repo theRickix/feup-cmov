@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WeatherApp"
+             x:Class="WeatherApp.FutureWeather"
+             xmlns:weatherVm="clr-namespace:WeatherApp.ViewModels"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             Title="Future">
+    <ContentPage.BindingContext>
+        <weatherVm:FutureWeatherViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+
+    <StackLayout Padding="20,40,20,20">
+        <Picker SelectedItem="{Binding City}" Title="City" ItemsSource="{Binding Cities}" HorizontalOptions="Fill">
+        </Picker>
+
+        <DatePicker Date="{Binding Date}" Format="yyyy-MM-dd" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" HorizontalOptions="Fill">
+
+        </DatePicker>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
+            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                <Image Source="{Binding FutureWeatherModel.DisplayedImageDay}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding FutureWeatherModel.TempCelsiusAvg}" FontSize="Large"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                <Label Text="ºC" FontSize="Medium" IsVisible="{Binding IsVisible}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
+            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding FutureWeatherModel.CompleteLocation}" FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Min. Temperature:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding FutureWeatherModel.MinTemp}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Max. Temperature:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding FutureWeatherModel.MaxTemp}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Max. Wind:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding PastWeatherModel.MaxWind}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Total Precipitation:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding FutureWeatherModel.TotalPrecipitation}"/>
+            </StackLayout>
+        </StackLayout>
+
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Avg. Humidity:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding FutureWeatherModel.AvgHumidity}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsVisible}">
+                <microcharts:ChartView x:Name="chartView" Chart="{Binding Chart}" HeightRequest="300" WidthRequest="500"/>
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ScrollView>
+
+</ContentPage>

@@ -37,5 +37,19 @@ namespace WeatherApp.RestClient
             return weather;
         }
 
+        public async Task<T> GetFutureWeatherAsync(String city, DateTime date)
+        {
+            var client = new System.Net.Http.HttpClient();
+            client.BaseAddress = new Uri("http://api.apixu.com/v1/");
+
+            var response = await client.GetAsync("forecast.json?key=30463600dbcf4b45873192147170412&q=" + city + ",Portugal&dt=" + date.ToString("yyyy-MM-dd"));
+
+            var weatherJson = response.Content.ReadAsStringAsync().Result;
+
+            var weather = JsonConvert.DeserializeObject<T>(weatherJson);
+
+            return weather;
+        }
+
     }
 }

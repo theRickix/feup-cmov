@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherApp.RestClient;
-using WeatherApp.Models;
+
 
 namespace WeatherApp.ServicesHandler
 {
@@ -21,6 +21,13 @@ namespace WeatherApp.ServicesHandler
         public async Task<PastWeatherModel> GetPastWeather(string city,DateTime date)
         {
             var getWeather = await apixuRestPast.GetPastWeatherAsync(city,date);
+            return getWeather;
+        }
+
+        Apixu<FutureWeatherModel> apixuRestFuture = new Apixu<FutureWeatherModel>();
+        public async Task<FutureWeatherModel> GetFutureWeather(string city, DateTime date)
+        {
+            var getWeather = await apixuRestFuture.GetFutureWeatherAsync(city, date);
             return getWeather;
         }
     }

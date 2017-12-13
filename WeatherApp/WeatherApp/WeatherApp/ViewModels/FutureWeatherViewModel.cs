@@ -12,7 +12,7 @@ using SkiaSharp;
 
 namespace WeatherApp.ViewModels
 {
-    class PastWeatherViewModel : INotifyPropertyChanged
+    class FutureWeatherViewModel : INotifyPropertyChanged
     {
 
         Services services = new Services();
@@ -41,7 +41,7 @@ namespace WeatherApp.ViewModels
         {
             get
             {
-                minDate = DateTime.Now.AddDays(-30);
+                minDate = DateTime.Now.AddDays(+1);
                 return minDate;
                 
             }
@@ -53,15 +53,15 @@ namespace WeatherApp.ViewModels
         {
             get
             {
-                maxDate = DateTime.Now.AddDays(-1);
+                maxDate = DateTime.Now.AddDays(+10);
                 return maxDate;
             }
         }
 
 
-        private PastWeatherModel weatherModel;
+        private FutureWeatherModel weatherModel;
 
-        public PastWeatherModel PastWeatherModel
+        public FutureWeatherModel FutureWeatherModel
         {
             get { return weatherModel; }
             set
@@ -99,7 +99,7 @@ namespace WeatherApp.ViewModels
             }
         }
 
-        private DateTime date = DateTime.Now.AddDays(-1);
+        private DateTime date = DateTime.Now.AddDays(+1);
 
         public DateTime Date
         {
@@ -146,7 +146,7 @@ namespace WeatherApp.ViewModels
             try
             {
                 IsBusy = true;
-                PastWeatherModel = await services.GetPastWeather(city,date);
+                FutureWeatherModel = await services.GetFutureWeather(city,date);
 
             }
             finally
@@ -169,7 +169,7 @@ namespace WeatherApp.ViewModels
                     });
                     i+=3;
                 }
-                Chart = new LineChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal }; ;
+                Chart = new LineChart() { Entries = entries,LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal }; ;
             }
         }
 
