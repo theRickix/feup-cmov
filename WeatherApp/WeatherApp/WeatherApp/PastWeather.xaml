@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WeatherApp"
              x:Class="WeatherApp.PastWeather"
              xmlns:weatherVm="clr-namespace:WeatherApp.ViewModels"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              Title="Past">
     <ContentPage.BindingContext>
         <weatherVm:PastWeatherViewModel/>
@@ -81,7 +82,10 @@
                 <Label Text="{Binding PastWeatherModel.AvgHumidity}"/>
             </StackLayout>
         </StackLayout>
+        <StackLayout>
 
+            <microcharts:ChartView x:Name="chartView" />
+        </StackLayout>
 
     </StackLayout>
 
