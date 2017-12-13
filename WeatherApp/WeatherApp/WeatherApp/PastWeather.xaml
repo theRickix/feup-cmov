@@ -6,41 +6,82 @@
              xmlns:weatherVm="clr-namespace:WeatherApp.ViewModels"
              Title="Past">
     <ContentPage.BindingContext>
-        <weatherVm:WeatherViewModel/>
+        <weatherVm:PastWeatherViewModel/>
     </ContentPage.BindingContext>
 
     <StackLayout Padding="20,40,20,20">
-        <Entry Text="{Binding City, Mode=TwoWay}"
-           Placeholder="Search City"/>
+        <Picker SelectedItem="{Binding City}" Title="City" ItemsSource="{Binding Cities}" HorizontalOptions="Start">
+        </Picker>
+
+        <DatePicker Date="{Binding Date}" Format="yyyy-MM-dd" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" HorizontalOptions="Start">
+
+        </DatePicker>
+
         <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
-        
-        
-        <StackLayout Orientation="Horizontal">
-            <StackLayout HorizontalOptions="StartAndExpand">
-                <Label Text="City:"/>
+
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
+            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                <Image Source="{Binding PastWeatherModel.DisplayedImageDay}" />
             </StackLayout>
-            <StackLayout HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding WeatherModel.location.name}"/>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding PastWeatherModel.TempCelsiusAvg}" FontSize="Large"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"  HorizontalOptions="CenterAndExpand">
+                <Label Text="ºC" FontSize="Medium" IsVisible="{Binding IsVisible}"/>
             </StackLayout>
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal">
-            <StackLayout HorizontalOptions="StartAndExpand">
-                <Label Text="Country:"/>
-            </StackLayout>
-            <StackLayout HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding WeatherModel.location.country}"/>
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" >
+            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding PastWeatherModel.CompleteLocation}" FontSize="Large"/>
             </StackLayout>
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
             <StackLayout HorizontalOptions="StartAndExpand">
-                <Label Text="Temperature:"/>
+                <Label Text="Min. Temperature:"/>
             </StackLayout>
             <StackLayout HorizontalOptions="EndAndExpand">
-                <Label Text="{Binding WeatherModel.current.temp_c}"/>
+                <Label Text="{Binding PastWeatherModel.MinTemp}"/>
             </StackLayout>
         </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Max. Temperature:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding PastWeatherModel.MaxTemp}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Max. Wind:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding PastWeatherModel.MaxWind}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Total Precipitation:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding PastWeatherModel.TotalPrecipitation}"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsVisible}">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label Text="Avg. Humidity:"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="EndAndExpand">
+                <Label Text="{Binding PastWeatherModel.AvgHumidity}"/>
+            </StackLayout>
+        </StackLayout>
+
 
     </StackLayout>
 

@@ -42,6 +42,7 @@
       <DependentUpon>FavouritesEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Models\PastWeatherModel.cs" />
     <Compile Include="PastWeather.xaml.cs">
       <DependentUpon>PastWeather.xaml</DependentUpon>
     </Compile>
@@ -69,6 +70,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FavouritesEditViewModel.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
+    <Compile Include="ViewModels\PastWeatherViewModel .cs" />
     <Compile Include="ViewModels\WeatherViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
