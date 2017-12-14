@@ -42,7 +42,7 @@ namespace WeatherApp.Helpers
         #region Setting Constants
 
         private const string AllCitiesKey = "allcities_key";
-        private static readonly string AllCitiesDefault = "Aveiro,Beja,Braga,Bragança,Castelo Branco,Coimbra,Évora,Faro,Guarda,Leiria,Lisboa,Portalegre,Porto,Santarém,Setúbal,Viana do Castelo,Vila Real,Viseu";
+        private static readonly string AllCitiesDefault = "Aveiro,Beja,Braga,Bragança,Castelo Branco,Coimbra,Évora,Faro,Guarda,Leiria,Lisboa,Portalegre,Porto,Santarém,Setúbal,Viana do Castelo,Vila Real,Viseu,Açores,Madeira";
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace WeatherApp.Helpers
         #region Setting Constants
 
         private const string FavouriteCitiesKey = "favouritecities_key";
-        private static readonly string FavouriteCitiesDefault = "Aveiro,Beja,Braga,Bragança,Castelo Branco,Coimbra,Évora,Faro,Guarda,Leiria,Lisboa,Portalegre,Porto,Santarém,Setúbal,Viana do Castelo,Vila Real,Viseu";
+        private static readonly string FavouriteCitiesDefault = "Aveiro,Beja,Braga,Bragança,Castelo Branco,Coimbra,Évora,Faro,Guarda,Leiria,Lisboa,Portalegre,Porto,Santarém,Setúbal,Viana do Castelo,Vila Real,Viseu,Açores,Madeira";
 
         #endregion
 

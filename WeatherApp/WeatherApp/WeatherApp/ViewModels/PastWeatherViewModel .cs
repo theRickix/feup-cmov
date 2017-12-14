@@ -9,6 +9,7 @@ using WeatherApp.ServicesHandler;
 using WeatherApp.Helpers;
 using Microcharts;
 using SkiaSharp;
+using Plugin.Connectivity;
 
 namespace WeatherApp.ViewModels
 {
@@ -146,7 +147,10 @@ namespace WeatherApp.ViewModels
             try
             {
                 IsBusy = true;
-                PastWeatherModel = await services.GetPastWeather(city,date);
+                if (!CrossConnectivity.Current.IsConnected)
+                    await App.Current.MainPage.DisplayAlert("Alert", "No internet!", "OK");
+                else
+                    PastWeatherModel = await services.GetPastWeather(city,date);
 
             }
             finally
@@ -155,21 +159,26 @@ namespace WeatherApp.ViewModels
 
                 var entries = new List<Microcharts.Entry>();
 
-                List<Hour> hours = weatherModel.NeededHours;
-                int i = 0;
-                foreach (Hour hour in hours)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-
-                    entries.Add(new Microcharts.Entry((float)hour.temp_c)
+                    List<Hour> hours = weatherModel.NeededHours;
+                    int i = 0;
+                    foreach (Hour hour in hours)
                     {
-                        Label = i+":00",
-                        ValueLabel = hour.temp_c.ToString()+"ºC",
-                        Color = SKColor.Parse("#266489")
 
-                    });
-                    i+=3;
+                        entries.Add(new Microcharts.Entry((float)hour.temp_c)
+                        {
+                            Label = i + ":00",
+                            ValueLabel = hour.temp_c.ToString() + "ºC",
+                            Color = SKColor.Parse("#266489")
+
+                        });
+                        i += 3;
+                    }
+                    Chart = new LineChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal }; ;
                 }
-                Chart = new LineChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal }; ;
+
+                    
             }
         }
 

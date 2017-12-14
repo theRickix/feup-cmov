@@ -17,6 +17,11 @@ namespace WeatherApp
         {
             InitializeComponent();
             BindingContext = new FavouritesViewModel();
+
+            ListFav.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                if (e.Item == null) return;
+                ((ListView)sender).SelectedItem = null;
+            };
         }
 
         protected override void OnAppearing()

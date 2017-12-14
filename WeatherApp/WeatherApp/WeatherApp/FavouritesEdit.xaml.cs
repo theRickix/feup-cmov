@@ -17,6 +17,12 @@ namespace WeatherApp
         {
             InitializeComponent();
             BindingContext = new FavouritesEditViewModel(data);
+
+            ListFav.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                if (e.Item == null) return;
+                ((ListView)sender).SelectedItem = null;
+            };
         }
+
     }
 }

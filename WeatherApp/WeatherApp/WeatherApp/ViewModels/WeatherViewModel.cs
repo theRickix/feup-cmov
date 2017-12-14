@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using WeatherApp.ServicesHandler;
 using WeatherApp.Helpers;
+using Plugin.Connectivity;
 
 namespace WeatherApp.ViewModels
 {
@@ -87,7 +88,11 @@ namespace WeatherApp.ViewModels
             try
             {
                 IsBusy = true;
-                WeatherModel = await services.GetWeather(city);
+
+                if (!CrossConnectivity.Current.IsConnected)
+                    await App.Current.MainPage.DisplayAlert("Alert", "No internet!", "OK");
+                else
+                    WeatherModel = await services.GetWeather(city);
             }
             finally
             {

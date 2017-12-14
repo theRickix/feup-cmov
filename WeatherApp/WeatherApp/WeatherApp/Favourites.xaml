@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Favourites"
-             Title="Favourites">
-    <ListView ItemsSource="{Binding DataSource}" Margin="20">
+             Title="Favourites"
+             BackgroundColor="White">
+    <ListView x:Name="ListFav" ItemsSource="{Binding DataSource}" Margin="20">
         <ListView.Header>
             <Button Command="{Binding SelectCommand}" Text="Edit" />
         </ListView.Header>

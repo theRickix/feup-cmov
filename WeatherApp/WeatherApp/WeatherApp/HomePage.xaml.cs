@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +18,6 @@ namespace WeatherApp
         {
             InitializeComponent();
         }
+
     }
 }
